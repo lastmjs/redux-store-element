@@ -56,7 +56,7 @@ Things to know:
 * You should stop the event from propagating (`e.stopPropagation`) or else all parent elements beyond the immediate element that `<redux-store></redux-store>` is declared in will potentially react to the event
 
 ## Dispatching actions
-To dispatch from within an element, set the action property on that element to the action that you want to dispatch. From the example: 
+To dispatch from within an element, first bind the action property of the element to the action property on `redux-store`. When you are ready to dispatch an action, set the action property on the element to the action that you want to dispatch. From the example: 
 
 ```
 <link rel="import" href="../../../src/redux-store.html">
@@ -82,3 +82,5 @@ To dispatch from within an element, set the action property on that element to t
     </script>
 </dom-module>
 ```
+
+That's it for now.

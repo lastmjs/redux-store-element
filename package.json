@@ -1,7 +1,7 @@
 {
   "name": "polymer-redux-store",
   "version": "0.0.1",
-  "description": "Change the description",
+  "description": "A simple web component made with Polymer that allows a more declarative use of Redux.",
   "dependencies": {
     "redux": "3.3.1"
   },

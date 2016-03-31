@@ -1,0 +1,1 @@
+This directory only exists to temporarily hold packages that cannot at the moment be installed via NPM. Eventually these should all be installed with NPM in the node_modules directory.

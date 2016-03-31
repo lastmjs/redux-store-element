@@ -1,0 +1,24 @@
+<link rel="import" href="../../../lib/bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../src/redux-store.html">
+
+<dom-module id="test-input-area">
+    <template>
+        <redux-store action="{{action}}"></redux-store>
+
+        <input id="testInput" type="text">
+        <button on-click="handleClick">Dispatch</button>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'test-input-area',
+            handleClick: function(e) {
+                this.action = {
+                    type: 'CHANGE_TEMP',
+                    newTemp: this.$.testInput.value
+                };
+            }
+        });
+    </script>
+</dom-module>

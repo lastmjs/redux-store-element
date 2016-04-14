@@ -1,8 +1,8 @@
 # polymer-redux-store
-A simple web component made with Polymer that allows a more declarative use of Redux.
+A simple Polymer web component that allows a more declarative use of Redux.
 
 # Introduction
-This is a Polymer component in very early development, but the concept works. So far the Redux solutions in Polymer that I have seen 
+This is a Polymer web component in very early development, but the concept works. So far the Polymer solutions using Redux that I have seen
 don't seem to take full advantage of the declarativeness of web components. Hopefully this element is a good start.
 
 # Setup
@@ -43,7 +43,7 @@ If your component needs to listen to state changes, simply pop a redux-store ele
             },
             mapStateToThis: function(e) {
                 e.stopPropagation();
-                
+
                 this.$.testText.innerHTML = e.detail.state.temp;
             }
         });
@@ -56,7 +56,7 @@ Things to know:
 * You should stop the event from propagating (`e.stopPropagation`) or else all parent elements beyond the immediate element that `<redux-store></redux-store>` is declared in will potentially react to the event
 
 ## Dispatching actions
-To dispatch from within an element, first bind the action property of the element to the action property on `redux-store`. When you are ready to dispatch an action, set the action property on the element to the action that you want to dispatch. From the example: 
+To dispatch from within an element, first bind the action property of the element to the action property on `redux-store`. When you are ready to dispatch an action, set the action property on the element to the action that you want to dispatch. From the example:
 
 ```
 <link rel="import" href="../../../src/redux-store.html">

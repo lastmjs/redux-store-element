@@ -90,10 +90,6 @@ If your component needs to listen to state changes, simply pop a `<redux-store><
 </dom-module>
 ```
 
-Things to know:
-* There is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
-* The `stateChange` event supplies the redux state in the `detail.state` property on the event
-
 ## Dispatching actions
 To dispatch from within an element, first bind the action property of the element to the action property on `<redux-store></redux-store>`. When you are ready to dispatch an action, set the action property on the element to the action that you want to dispatch. From the example:
 
@@ -122,4 +118,7 @@ To dispatch from within an element, first bind the action property of the elemen
 </dom-module>
 ```
 
-That's it for now.
+## Important Things to Know:
+* You must pass in your root reducer to any `<redux-store></redux-store>` before you can dispatch actions and receive state changes
+* There is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
+* The `stateChange` event supplies the redux state in the `detail.state` property on the event

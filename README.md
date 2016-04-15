@@ -5,17 +5,13 @@ A simple Polymer web component that allows a more declarative use of Redux.
 This is a Polymer web component in early development, but the concept works. So far the Polymer solutions using Redux that I have seen
 don't seem to take full advantage of the declarativeness of web components. This element should be a good start.
 
-# Setup
-Clone the repo and run the following:
+# Installation and Setup
+Run the following:
 ```
-npm install
-npm start
+npm install polymer-redux-store
 ```
 
-Open up to localhost:[whatever port the terminal says]. The port is usually localhost:8080.
-
-# Use
-For a simple working example, look in the example directory and open example/index.html.
+To play with the example, go to the root of the project and open up to localhost:[whatever port the terminal says]. The port is usually localhost:8080. Go to the example directory and open example/index.html.
 
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:

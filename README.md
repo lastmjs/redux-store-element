@@ -69,7 +69,7 @@ At some point before you begin dispatching actions, you need to pass in your roo
 ```
 
 ## Subscribing to state changes
-If your component needs to listen to state changes, simply pop a `<redux-store></redux-store>` element in and pass a listener function in for the `stateChange` event. From the example:
+If your component needs to listen to state changes, simply pop a `<redux-store></redux-store>` element in and pass a listener function in for the `statechange` event. From the example:
 
 ```
 <link rel="import" href="../../../lib/bower_components/polymer/polymer.html">
@@ -125,7 +125,7 @@ To dispatch from within an element, first bind the action property of the elemen
 ## Important Things to Know:
 * You must pass in your root reducer to any `<redux-store></redux-store>` before you can dispatch actions and receive state changes
 * There is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
-* The `stateChange` event supplies the redux state in the `detail.state` property on the event
+* The `statechange` event supplies the redux state in the `detail.state` property on the event
 
 ## Development
 To play with the example, go to the root of the project:

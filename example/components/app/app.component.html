@@ -20,7 +20,12 @@
                     temp: 'initial temp'
                 };
 
-                this.rootReducer = function(state=initialState, action) {
+                this.rootReducer = function(state, action) {
+
+                    if (!state) {
+                        return initialState;
+                    }
+
                     switch(action.type) {
                         case 'CHANGE_TEMP': {
                             var newState = Object.assign({}, state);

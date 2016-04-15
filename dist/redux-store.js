@@ -46,59 +46,93 @@
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _reduxMin = __webpack_require__(1);
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var is = 'redux-store';
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	;
 	var store = void 0;
 	var listenersToAdd = [];
-	var properties = {
-	    rootReducer: {
-	        type: Object,
-	        observer: 'rootReducerSet'
-	    },
-	    action: {
-	        type: Object,
-	        observer: 'actionChanged'
-	    }
-	};
-	var ready = function ready() {
-	    if (store) {
-	        subscribe.apply(this);
-	    } else {
-	        listenersToAdd = [].concat(_toConsumableArray(listenersToAdd), [{
-	            context: this
-	        }]);
-	    }
-	};
-	var subscribe = function subscribe() {
-	    var _this = this;
 
-	    store.subscribe(function () {
-	        _this.fire('statechange', {
-	            state: store.getState()
-	        }, {
-	            bubbles: false
-	        });
-	    });
-	};
-	var actionChanged = function actionChanged(newValue, oldValue) {
-	    store.dispatch(newValue);
-	};
-	var rootReducerSet = function rootReducerSet(newValue, oldValue) {
-	    store = (0, _reduxMin.createStore)(newValue);
-	    listenersToAdd.forEach(function (element) {
-	        subscribe.apply(element.context);
-	    });
-	};
-	Polymer({
-	    is: is,
-	    properties: properties,
-	    ready: ready,
-	    actionChanged: actionChanged,
-	    rootReducerSet: rootReducerSet
-	});
+	var ReduxStoreComponent = function () {
+	    function ReduxStoreComponent() {
+	        _classCallCheck(this, ReduxStoreComponent);
+	    }
+
+	    _createClass(ReduxStoreComponent, [{
+	        key: 'beforeRegister',
+	        value: function beforeRegister() {
+	            this.is = 'redux-store';
+	            this.properties = {
+	                rootReducer: {
+	                    type: Object,
+	                    observer: 'rootReducerSet'
+	                },
+	                action: {
+	                    type: Object,
+	                    observer: 'actionChanged'
+	                }
+	            };
+	        }
+	    }, {
+	        key: 'ready',
+	        value: function ready() {
+	            if (store) {
+	                this.subscribe();
+	            } else {
+	                listenersToAdd = [].concat(_toConsumableArray(listenersToAdd), [{
+	                    context: this
+	                }]);
+	            }
+	        }
+	    }, {
+	        key: 'subscribe',
+	        value: function subscribe() {
+	            var _this = this;
+
+	            store.subscribe(function () {
+	                _this.fire('statechange', {
+	                    state: store.getState()
+	                }, {
+	                    bubbles: false
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'actionChanged',
+	        value: function actionChanged(newValue, oldValue) {
+	            store.dispatch(newValue);
+	        }
+	    }, {
+	        key: 'rootReducerSet',
+	        value: function rootReducerSet(newValue, oldValue) {
+	            var _this2 = this;
+
+	            store = (0, _reduxMin.createStore)(newValue);
+	            listenersToAdd.forEach(function (element) {
+	                _this2.subscribe.apply(element.context);
+	            });
+	            listenersToAdd = [];
+	        }
+	    }, {
+	        key: 'attached',
+	        value: function attached() {}
+	    }, {
+	        key: 'detached',
+	        value: function detached() {}
+	    }, {
+	        key: 'attributeChanged',
+	        value: function attributeChanged() {}
+	    }]);
+
+	    return ReduxStoreComponent;
+	}();
+
+	Polymer(ReduxStoreComponent);
 
 /***/ },
 /* 1 */

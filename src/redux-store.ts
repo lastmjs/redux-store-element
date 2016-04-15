@@ -1,14 +1,18 @@
 import {createStore} from '../node_modules/redux/dist/redux.min.js';
-import {rootReducer} from '../example/redux/reducers.ts';
 
 //TODO this needs to become a singleton...I'm not sure if it is at the moment, I think each element declaration in the markup is creatign a new object
 (() => {
 
     const is = 'redux-store';
 
-    const store = createStore(rootReducer);
+    let store;
+    let listenersToAdd = [];
 
     const properties = {
+        rootReducer: {
+            type: Object,
+            observer: 'rootReducerSet'
+        },
         action: {
             type: Object,
             observer: 'actionChanged'
@@ -16,6 +20,17 @@ import {rootReducer} from '../example/redux/reducers.ts';
     };
 
     const ready = function() {
+        if (store) {
+            subscribe.apply(this);
+        }
+        else {
+            listenersToAdd = [...listenersToAdd, {
+                context: this
+            }];
+        }
+    };
+
+    const subscribe = function() {
         store.subscribe(() => {
             this.fire('stateChange', {
                 state: store.getState()
@@ -27,10 +42,18 @@ import {rootReducer} from '../example/redux/reducers.ts';
         store.dispatch(newValue);
     };
 
+    const rootReducerSet = function(newValue, oldValue) {
+        store = createStore(newValue);
+        listenersToAdd.forEach(function(element) {
+            subscribe.apply(element.context);
+        });
+    };
+
     Polymer({
         is,
         properties,
         ready,
-        actionChanged
+        actionChanged,
+        rootReducerSet
     });
 })();

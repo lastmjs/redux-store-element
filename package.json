@@ -3,6 +3,10 @@
   "version": "0.0.2",
   "description": "A simple Polymer web component that allows a more declarative use of Redux.",
   "keywords": ["web-components"],
+  "repository": {
+     "type": "git",
+     "url": "https://github.com/lastmjs/polymer-redux-store.git"
+  },
   "dependencies": {
     "redux": "3.3.1"
   },

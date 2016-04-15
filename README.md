@@ -46,7 +46,12 @@ At some point before you begin dispatching actions, you need to pass in your roo
                     temp: 'initial temp'
                 };
 
-                this.rootReducer = function(state=initialState, action) {
+                this.rootReducer = function(state, action) {
+                
+                    if (!state) {
+                        return initialState;
+                    }
+                
                     switch(action.type) {
                         case 'CHANGE_TEMP': {
                             var newState = Object.assign({}, state);

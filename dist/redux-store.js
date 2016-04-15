@@ -50,55 +50,55 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	(function () {
-	    var is = 'redux-store';
-	    var store = void 0;
-	    var listenersToAdd = [];
-	    var properties = {
-	        rootReducer: {
-	            type: Object,
-	            observer: 'rootReducerSet'
-	        },
-	        action: {
-	            type: Object,
-	            observer: 'actionChanged'
-	        }
-	    };
-	    var ready = function ready() {
-	        if (store) {
-	            subscribe.apply(this);
-	        } else {
-	            listenersToAdd = [].concat(_toConsumableArray(listenersToAdd), [{
-	                context: this
-	            }]);
-	        }
-	    };
-	    var subscribe = function subscribe() {
-	        var _this = this;
+	var is = 'redux-store';
+	var store = void 0;
+	var listenersToAdd = [];
+	var properties = {
+	    rootReducer: {
+	        type: Object,
+	        observer: 'rootReducerSet'
+	    },
+	    action: {
+	        type: Object,
+	        observer: 'actionChanged'
+	    }
+	};
+	var ready = function ready() {
+	    if (store) {
+	        subscribe.apply(this);
+	    } else {
+	        listenersToAdd = [].concat(_toConsumableArray(listenersToAdd), [{
+	            context: this
+	        }]);
+	    }
+	};
+	var subscribe = function subscribe() {
+	    var _this = this;
 
-	        store.subscribe(function () {
-	            _this.fire('stateChange', {
-	                state: store.getState()
-	            });
+	    store.subscribe(function () {
+	        _this.fire('statechange', {
+	            state: store.getState()
+	        }, {
+	            bubbles: false
 	        });
-	    };
-	    var actionChanged = function actionChanged(newValue, oldValue) {
-	        store.dispatch(newValue);
-	    };
-	    var rootReducerSet = function rootReducerSet(newValue, oldValue) {
-	        store = (0, _reduxMin.createStore)(newValue);
-	        listenersToAdd.forEach(function (element) {
-	            subscribe.apply(element.context);
-	        });
-	    };
-	    Polymer({
-	        is: is,
-	        properties: properties,
-	        ready: ready,
-	        actionChanged: actionChanged,
-	        rootReducerSet: rootReducerSet
 	    });
-	})();
+	};
+	var actionChanged = function actionChanged(newValue, oldValue) {
+	    store.dispatch(newValue);
+	};
+	var rootReducerSet = function rootReducerSet(newValue, oldValue) {
+	    store = (0, _reduxMin.createStore)(newValue);
+	    listenersToAdd.forEach(function (element) {
+	        subscribe.apply(element.context);
+	    });
+	};
+	Polymer({
+	    is: is,
+	    properties: properties,
+	    ready: ready,
+	    actionChanged: actionChanged,
+	    rootReducerSet: rootReducerSet
+	});
 
 /***/ },
 /* 1 */

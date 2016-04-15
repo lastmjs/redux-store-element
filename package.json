@@ -1,6 +1,6 @@
 {
   "name": "polymer-redux-store",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple Polymer web component that allows a more declarative use of Redux.",
   "keywords": ["web-components"],
   "repository": {

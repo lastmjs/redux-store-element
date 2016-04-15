@@ -10,8 +10,7 @@ Run the following:
 ```
 npm install polymer-redux-store
 ```
-
-To play with the example, go to the root of the project and open up to localhost:[whatever port the terminal says]. The port is usually localhost:8080. Go to the example directory and open example/index.html.
+Now you can import `redux-store.html` from the src directory, and the component is yours to use.
 
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:
@@ -118,3 +117,11 @@ To dispatch from within an element, first bind the action property of the elemen
 * You must pass in your root reducer to any `<redux-store></redux-store>` before you can dispatch actions and receive state changes
 * There is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
 * The `stateChange` event supplies the redux state in the `detail.state` property on the event
+
+## Development
+To play with the example, go to the root of the project:
+```
+npm install
+npm run
+```
+Open up to localhost:[whatever port the terminal says]. The port is usually localhost:8080. Go to the example directory and open example/index.html.

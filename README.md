@@ -5,6 +5,15 @@ A simple Polymer web component that allows a more declarative use of Redux.
 This is a Polymer web component in early development, but the concept works. So far the Polymer solutions using Redux that I have seen
 don't seem to take full advantage of the declarativeness of web components. This element should be a good start.
 
+## Simple and Declarative
+Before we begin, I just want to highlight how easy it is to work with this component declaratively:
+
+* Hook up your root reducer: `<redux-store root-reducer="[[rootReducer]]"></redux-store>`
+* Dispatch actions: `<redux-store action="[[action]]"></redux-store>`
+* Listen for state changes: `<redux-store on-statechange="mapStateToThis"></redux-store>`
+
+That is the entirety of the API exposed to you through HTML.
+
 # Installation and Setup
 Run the following:
 ```

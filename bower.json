@@ -1,0 +1,13 @@
+{
+  "name": "polymer-redux-store",
+  "description": "A simple Polymer web component that allows a more declarative use of Redux.",
+  "main": "",
+  "authors": [
+    "Jordan Last <jordan.michael.last@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "web-components"
+  ],
+  "homepage": "https://github.com/lastmjs/polymer-redux-store"
+}

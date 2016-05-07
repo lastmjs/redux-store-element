@@ -2,8 +2,7 @@
 A simple Polymer web component that allows a more declarative use of Redux.
 
 # Introduction
-This is a Polymer web component in early development, but the concept works. So far the Polymer solutions using Redux that I have seen
-don't seem to take full advantage of the declarativeness of web components. This element should be a good start.
+So far the Polymer solutions using Redux that I have seen don't seem to take full advantage of the declarativeness of web components. I'm hoping this element solves that problem.
 
 ## Simple and Declarative
 Before we begin, I just want to highlight how easy it is to work with this component declaratively:
@@ -17,9 +16,9 @@ That is the entirety of the API exposed to you through HTML.
 # Installation and Setup
 Run the following:
 ```
-npm install polymer-redux-store
+bower install --save polymer-redux-store
 ```
-Now you can import `redux-store.html` from the src directory, and the component is yours to use.
+Now you can import `redux-store.html` and the component is yours to use.
 
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:
@@ -135,7 +134,8 @@ To dispatch from within an element, first bind the action property of the elemen
 ## Development
 To play with the example, go to the root of the project:
 ```
+bower install
 npm install
-npm run
+npm start
 ```
 Open up to localhost:[whatever port the terminal says]. The port is usually localhost:8080. Go to the example directory and open example/index.html.

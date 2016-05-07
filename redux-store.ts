@@ -1,19 +1,9 @@
-import {createStore} from '../node_modules/redux/dist/redux.min.js';
-
-interface PolymerComponent {
-    is: string;
-    properties: any;
-    beforeRegister(): void;
-    ready(): void;
-    attached(): void;
-    detached(): void;
-    attributeChanged(): void;
-};
+import {createStore} from './node_modules/redux/dist/redux.min.js';
 
 let store;
 let listenersToAdd = [];
 
-class ReduxStoreComponent implements PolymerComponent {
+class ReduxStoreComponent {
     public is;
     public properties;
 
@@ -63,10 +53,6 @@ class ReduxStoreComponent implements PolymerComponent {
         });
         listenersToAdd = [];
     }
-
-    attached() {}
-    detached() {}
-    attributeChanged() {}
 }
 
 Polymer(ReduxStoreComponent);

@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        'redux-store': './src/redux-store.ts'
+        'redux-store': './redux-store.ts'
     },
     output: {
         path: './dist',

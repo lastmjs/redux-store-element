@@ -132,7 +132,7 @@ To dispatch from within an element, first bind the action property of the elemen
 * The `statechange` event supplies the redux state in the `detail.state` property on the event
 
 ## Development
-To play with the example, go to the root of the project:
+To play with the example, clone the repo, go to the root of the project, and run the following commands:
 ```
 bower install
 npm install

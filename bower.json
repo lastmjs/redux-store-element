@@ -1,5 +1,5 @@
 {
-  "name": "polymer-redux-store",
+  "name": "redux-store-element",
   "version": "0.1.6",
   "description": "A simple Polymer web component that allows a more declarative use of Redux.",
   "authors": [

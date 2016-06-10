@@ -1,4 +1,4 @@
-# polymer-redux-store
+# redux-store-element
 A simple Polymer web component that allows a more declarative use of Redux.
 
 # Introduction
@@ -16,7 +16,7 @@ That is the entirety of the API exposed to you through HTML.
 # Installation and Setup
 Run the following:
 ```
-bower install --save polymer-redux-store
+bower install --save redux-store-element
 ```
 Now you can import `redux-store.html` and the component is yours to use.
 

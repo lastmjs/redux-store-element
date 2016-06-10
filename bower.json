@@ -1,7 +1,7 @@
 {
   "name": "redux-store-element",
   "version": "0.1.6",
-  "description": "A simple Polymer web component that allows a more declarative use of Redux.",
+  "description": "A simple web component written with the Polymer library that allows a more declarative use of Redux.",
   "authors": [
     "Jordan Last <jordan.michael.last@gmail.com>"
   ],
@@ -9,7 +9,7 @@
   "keywords": [
     "web-components"
   ],
-  "homepage": "https://github.com/lastmjs/polymer-redux-store",
+  "homepage": "https://github.com/lastmjs/redux-store-element",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   }

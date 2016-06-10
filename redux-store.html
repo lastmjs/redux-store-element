@@ -1,5 +1,10 @@
+<script src="../../node_modules/systemjs/dist/system.js"></script>
+<script src="../../node_modules/es-no-build/config.js"></script>
+
 <link rel="import" href="../polymer/polymer.html">
 
 <dom-module id="redux-store">
-    <script src="dist/redux-store.js"></script>
+    <script>
+        System.import('/bower_components/redux-store-element/redux-store.ts');
+    </script>
 </dom-module>

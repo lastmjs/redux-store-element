@@ -18,6 +18,7 @@ Run the following:
 ```
 bower install --save redux-store-element
 npm install --save redux
+npm install --save es-no-build
 ```
 Now you can import `redux-store.html` and the component is yours to use.
 

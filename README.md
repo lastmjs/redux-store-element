@@ -17,6 +17,7 @@ That is the entirety of the API exposed to you through HTML.
 Run the following:
 ```
 bower install --save redux-store-element
+npm install --save redux
 ```
 Now you can import `redux-store.html` and the component is yours to use.
 

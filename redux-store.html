@@ -2,8 +2,15 @@
 
 <link rel="import" href="../polymer/polymer.html">
 
-<dom-module id="redux-store">
+<dom-module id="reduxStoreDomModule" is="redux-store">
     <script>
-        System.import('/bower_components/redux-store-element/redux-store.ts');
+        if (window.reduxStoreElementDevelopment) {
+            System.import('/bower_components/redux-store-element/redux-store.ts');
+        }
+        else {
+            const script = document.createElement('script');
+            script.src = 'redux-store.js';
+            document.getElementById('reduxStoreDomModule').appendChild(script);
+        }
     </script>
 </dom-module>

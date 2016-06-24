@@ -128,10 +128,18 @@ To dispatch from within an element, first bind the action property of the elemen
 </dom-module>
 ```
 
+## Multiple Stores
+By default, there is one store for the entire application, meaning that each instance of a `<redux-store></redux-store>` will use the same store. You can however use multiple stores if you've determined it is necessary for your application. Simply reference the store name as follows:
+
+* Hook up your root reducer: `<redux-store root-reducer="[[rootReducer]]" store-name="fooStore"></redux-store>`
+* Dispatch actions: `<redux-store action="[[action]]" store-name="fooStore"></redux-store>`
+* Listen for state changes: `<redux-store on-statechange="mapStateToThis" store-name="fooStore"></redux-store>`
+
 ## Important Things to Know:
 * You must pass in your root reducer to any `<redux-store></redux-store>` before you can dispatch actions and receive state changes
-* There is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
+* By default there is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
 * The `statechange` event supplies the redux state in the `detail.state` property on the event
+* This repo assumes that your node_modules and bower_components directories are located at the root endpoint of your server.
 
 ## Development
 To play with the example, clone the repo, go to the root of the project, and run the following commands:

@@ -2,15 +2,16 @@
 
 <link rel="import" href="../polymer/polymer.html">
 
-<dom-module id="reduxStoreDomModule" is="redux-store">
+<dom-module is="redux-store">
     <script>
-        if (window.reduxStoreElementDevelopment) {
-            System.import('/bower_components/redux-store-element/redux-store.ts');
-        }
-        else {
-            const script = document.createElement('script');
-            script.src = 'redux-store.js';
-            document.getElementById('reduxStoreDomModule').appendChild(script);
-        }
+        System.import('/bower_components/redux-store-element/redux-store.ts');
+        // if (window.reduxStoreElementDevelopment) {
+        //     System.import('/bower_components/redux-store-element/redux-store.ts');
+        // }
+        // else {
+        //     const script = document.createElement('script');
+        //     script.src = '/bower_components/redux-store-element/redux-store.js';
+        //     document.body.appendChild(script);
+        // }
     </script>
 </dom-module>

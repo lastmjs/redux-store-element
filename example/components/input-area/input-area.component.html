@@ -5,6 +5,7 @@
 <dom-module id="test-input-area">
     <template>
         <redux-store action="[[action]]"></redux-store>
+        <redux-store action="[[action]]" store-name="hello"></redux-store>
 
         <input id="testInput" type="text">
         <button on-click="handleClick">Dispatch</button>

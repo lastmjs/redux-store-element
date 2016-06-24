@@ -1,6 +1,6 @@
 import {createStore} from '../../node_modules/redux/dist/redux.min.js';
 
-let store;
+let stores = {};
 let listenersToAdd = [];
 
 class ReduxStoreComponent {
@@ -17,12 +17,17 @@ class ReduxStoreComponent {
             action: {
                 type: Object,
                 observer: 'actionChanged'
+            },
+            storeName: {
+                type: String,
+                observer: 'storeNameSet',
+                value: 'default'
             }
         };
     }
 
     ready() {
-        if (store) {
+        if (stores[this.storeName]) {
             this.subscribe();
         }
         else {
@@ -33,9 +38,9 @@ class ReduxStoreComponent {
     }
 
     subscribe() {
-        store.subscribe(() => {
+        stores[this.storeName].subscribe(() => {
             this.fire('statechange', {
-                state: store.getState()
+                state: stores[this.storeName].getState()
             }, {
                 bubbles: false
             });
@@ -43,11 +48,23 @@ class ReduxStoreComponent {
     }
 
     actionChanged(newValue, oldValue) {
-        store.dispatch(newValue);
+        stores[this.storeName].dispatch(newValue);
     }
 
     rootReducerSet(newValue, oldValue) {
-        store = createStore(newValue);
+        if (this.rootReducer && this.storeName) {
+            this.createTheStore();
+        }
+    }
+
+    storeNameSet(newValue, oldValue) {
+        if (this.rootReducer && this.storeName) {
+            this.createTheStore();
+        }
+    }
+
+    createTheStore() {
+        stores[this.storeName] = createStore(this.rootReducer);
         listenersToAdd.forEach((element) => {
             this.subscribe.apply(element.context);
         });

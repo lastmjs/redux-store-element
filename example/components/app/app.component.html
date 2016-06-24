@@ -6,7 +6,8 @@
 
 <dom-module id="test-app">
     <template>
-        <redux-store root-reducer="[[rootReducer]]"></redux-store>
+        <redux-store root-reducer="[[rootReducerDefault]]"></redux-store>
+        <redux-store root-reducer="[[rootReducerHello]]" store-name="hello"></redux-store>
         <test-input-area></test-input-area>
         <test-text></test-text>
     </template>
@@ -20,7 +21,27 @@
                     temp: 'initial temp'
                 };
 
-                this.rootReducer = function(state, action) {
+                this.rootReducerDefault = function(state, action) {
+
+                    if (!state) {
+                        return initialState;
+                    }
+
+                    switch(action.type) {
+                        case 'CHANGE_TEMP': {
+                            var newState = Object.assign({}, state);
+
+                            newState.temp = action.newTemp;
+
+                            return newState;
+                        }
+                        default: {
+                            return state;
+                        }
+                    };
+                };
+
+                this.rootReducerHello = function(state, action) {
 
                     if (!state) {
                         return initialState;

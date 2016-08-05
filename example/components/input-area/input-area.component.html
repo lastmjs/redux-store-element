@@ -11,15 +11,5 @@
         <button on-click="handleClick">Dispatch</button>
     </template>
 
-    <script>
-        Polymer({
-            is: 'test-input-area',
-            handleClick: function(e) {
-                this.action = {
-                    type: 'CHANGE_TEMP',
-                    newTemp: this.$.testInput.value
-                };
-            }
-        });
-    </script>
+    <script>System.import('/example/components/input-area/input-area.component.ts');</script>
 </dom-module>

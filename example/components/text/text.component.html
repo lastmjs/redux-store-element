@@ -11,15 +11,5 @@
         <div id="testTextHello">Text from input above will go here</div>
     </template>
 
-    <script>
-        Polymer({
-            is: 'test-text',
-            mapStateToThisDefault: function(e) {
-                this.$.testTextDefault.innerHTML = e.detail.state.temp;
-            },
-            mapStateToThisHello: function(e) {
-                this.$.testTextHello.innerHTML = e.detail.state.temp;
-            }
-        });
-    </script>
+    <script>System.import('/example/components/text/text.component.ts');</script>
 </dom-module>

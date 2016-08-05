@@ -1,11 +1,12 @@
 import {createStore} from '../../node_modules/redux/dist/redux.min.js';
 
 let stores = {};
-let listenersToAdd = [];
 
 class ReduxStoreComponent {
     public is;
     public properties;
+
+    private listenersToAdd;
 
     beforeRegister() {
         this.is = 'redux-store';
@@ -24,6 +25,7 @@ class ReduxStoreComponent {
                 value: 'default'
             }
         };
+        this.listenersToAdd = [];
     }
 
     ready() {
@@ -31,7 +33,7 @@ class ReduxStoreComponent {
             this.subscribe();
         }
         else {
-            listenersToAdd = [...listenersToAdd, {
+            this.listenersToAdd = [...this.listenersToAdd, {
                 context: this
             }];
         }
@@ -65,11 +67,11 @@ class ReduxStoreComponent {
 
     createTheStore() {
         stores[this.storeName] = createStore(this.rootReducer);
-        listenersToAdd.forEach((element) => {
+        this.listenersToAdd.forEach((element) => {
             element.context.storeName = this.storeName;
             this.subscribe.apply(element.context);
         });
-        listenersToAdd = [];
+        this.listenersToAdd = [];
     }
 }
 

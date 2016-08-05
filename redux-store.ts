@@ -66,6 +66,7 @@ class ReduxStoreComponent {
     createTheStore() {
         stores[this.storeName] = createStore(this.rootReducer);
         listenersToAdd.forEach((element) => {
+            element.context.storeName = this.storeName;
             this.subscribe.apply(element.context);
         });
         listenersToAdd = [];

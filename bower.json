@@ -1,6 +1,6 @@
 {
   "name": "redux-store-element",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A simple web component written with the Polymer library that allows a more declarative use of Redux.",
   "authors": [
     "Jordan Last <jordan.michael.last@gmail.com>"

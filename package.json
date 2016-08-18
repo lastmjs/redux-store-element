@@ -10,7 +10,7 @@
     "url": "https://github.com/lastmjs/redux-store-element.git"
   },
   "dependencies": {
-    "redux": "3.3.1"
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "es-no-build": "^0.1.0",

@@ -10,15 +10,16 @@
     "url": "https://github.com/lastmjs/redux-store-element.git"
   },
   "dependencies": {
-    "es-no-build": "^0.1.0",
     "redux": "3.3.1"
   },
   "devDependencies": {
+    "es-no-build": "^0.1.0",
     "http-server": "^0.9.0",
-    "systemjs-builder": "^0.15.23"
+    "systemjs-builder": "^0.15.26"
   },
   "scripts": {
     "http-server": "http-server",
-    "start": "node dev-init && npm run http-server"
+    "build": "node production-builder.js",
+    "start": "node dev-init && npm run build && npm run http-server"
   }
 }

@@ -18,7 +18,6 @@ Run the following:
 ```
 bower install --save redux-store-element
 npm install --save redux
-npm install --save es-no-build
 ```
 Now you can import `redux-store.html` and the component is yours to use.
 
@@ -48,11 +47,11 @@ At some point before you begin dispatching actions, you need to pass in your roo
                 };
 
                 this.rootReducer = function(state, action) {
-                
+
                     if (!state) {
                         return initialState;
                     }
-                
+
                     switch(action.type) {
                         case 'CHANGE_TEMP': {
                             var newState = Object.assign({}, state);
@@ -139,7 +138,6 @@ By default, there is one store for the entire application, meaning that each ins
 * You must pass in your root reducer to any `<redux-store></redux-store>` before you can dispatch actions and receive state changes
 * By default there is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
 * The `statechange` event supplies the redux state in the `detail.state` property on the event
-* This repo assumes that your node_modules and bower_components directories are located at the root endpoint of your server.
 
 ## Development
 To play with the example, clone the repo, go to the root of the project, and run the following commands:

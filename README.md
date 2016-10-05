@@ -8,6 +8,7 @@ So far the Polymer solutions using Redux that I have seen don't seem to take ful
 Before we begin, I just want to highlight how easy it is to work with this component declaratively:
 
 * Hook up your root reducer (similar to Redux `createStore`): 
+
   ```
   <redux-store root-reducer="[[rootReducer]]"></redux-store>
   ```

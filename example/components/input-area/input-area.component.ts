@@ -4,6 +4,8 @@ class TestInputAreaComponent {
     }
 
     handleClick(e) {
+        console.log(this.querySelector('#redux-store-element').getState());
+
         this.action = {
             type: 'CHANGE_TEMP',
             newTemp: this.$.testInput.value

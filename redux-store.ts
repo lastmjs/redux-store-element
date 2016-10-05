@@ -47,6 +47,10 @@ class ReduxStoreComponent {
         });
     }
 
+    getState() {
+        return stores[this.storeName].getState();
+    }
+
     actionChanged(newValue, oldValue) {
         stores[this.storeName].dispatch(newValue);
     }

@@ -12,8 +12,14 @@ Before we begin, I just want to highlight how easy it is to work with this compo
   ```
   <redux-store root-reducer="[[rootReducer]]"></redux-store>
   ```
-* Dispatch actions (similar to Redux `dispatch`): `<redux-store action="[[action]]"></redux-store>`
-* Listen for state changes (similar to Redux `subscribe`): `<redux-store on-statechange="mapStateToThis"></redux-store>`
+* Dispatch actions (similar to Redux `dispatch`): 
+  ```
+  <redux-store action="[[action]]"></redux-store>
+  ```
+* Listen for state changes (similar to Redux `subscribe`): 
+  ```
+  <redux-store on-statechange="mapStateToThis"></redux-store>
+  ```
 * Explicitly grab the state, but only if you must, prefer listening for state changes (similar to Redux `getState`):
   ```
   //HTML

@@ -10,6 +10,15 @@ Before we begin, I just want to highlight how easy it is to work with this compo
 * Hook up your root reducer: `<redux-store root-reducer="[[rootReducer]]"></redux-store>`
 * Dispatch actions: `<redux-store action="[[action]]"></redux-store>`
 * Listen for state changes: `<redux-store on-statechange="mapStateToThis"></redux-store>`
+* Explicitly grab the state (if you must, prefer listening for state changes):
+  ```
+  //HTML
+  <redux-store id="redux-store-element></redux-store-element>
+  
+  //JS
+  const reduxStoreElement = this.querySelector('#redux-store-element');
+  const state = reduxStoreElement.getState();
+  ```
 
 That is the entirety of the API exposed to you through HTML.
 

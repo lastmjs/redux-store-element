@@ -26,7 +26,7 @@ Before we begin, I just want to highlight how easy it is to work with this compo
 
   ```
   //HTML
-  <redux-store id="redux-store-element></redux-store-element>
+  <redux-store id="redux-store-element"></redux-store>
   
   //JS
   const reduxStoreElement = this.querySelector('#redux-store-element');
@@ -96,7 +96,7 @@ At some point before you begin dispatching actions, you need to pass in your roo
 ```
 
 ## Subscribing to state changes
-If your component needs to listen to state changes, simply pop a `<redux-store></redux-store>` element in and pass a listener function in for the `statechange` event. From the example:
+If your component needs to listen to state changes, simply pop a `<redux-store></redux-store>` element in and pass a listener function name in for the `statechange` event. From the example:
 
 ```
 <link rel="import" href="../../../lib/bower_components/polymer/polymer.html">

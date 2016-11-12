@@ -6,9 +6,9 @@ class TestTextComponent {
     localStateChangeClick(e) {
         this.action = {
             type: 'LOCAL_STATE_CHANGE',
-            props: {
-                monkey: 5
-            }
+            monkey: 5,
+            chunkey: 3,
+            you: 5
         };
     }
 
@@ -16,7 +16,6 @@ class TestTextComponent {
         const state = e.detail.state;
 
         this.querySelector('#testTextDefaultStore').innerHTML = state.temp;
-
         state.textComponent && (this.querySelector('#testLocalState').innerHTML = state.textComponent.monkey);
     }
 

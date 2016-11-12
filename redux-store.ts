@@ -61,7 +61,7 @@ class ReduxStoreComponent {
                 if (action.type === 'LOCAL_STATE_CHANGE') {
                     if (context.localStateName) {
                         const newState = Object.assign({}, state, {
-                            [context.localStateName]: action.props
+                            [context.localStateName]: createActionPropertiesObject(action)
                         });
                         return newState;
                     }
@@ -70,6 +70,15 @@ class ReduxStoreComponent {
                     }
                 }
                 return state;
+            }
+
+            function createActionPropertiesObject(action) {
+                return Object.keys(action).filter((key) => {
+                    return key !== 'type';
+                }).reduce((accum, key) => {
+                    accum[key] = action[key];
+                    return accum;
+                }, {});
             }
         };
 

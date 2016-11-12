@@ -7,8 +7,6 @@ class ReduxStoreComponent {
     public is;
     public properties;
 
-    private listenersToAdd;
-
     beforeRegister() {
         this.is = 'redux-store';
         this.properties = {
@@ -24,6 +22,9 @@ class ReduxStoreComponent {
                 type: String,
                 observer: 'storeNameSet',
                 value: 'default'
+            },
+            localStateName: {
+                type: String
             }
         };
     }
@@ -38,9 +39,9 @@ class ReduxStoreComponent {
     }
 
     subscribe() {
-        stores[this.storeName].subscribe(() => {
+        stores[this.storeName].store.subscribe(() => {
             this.fire('statechange', {
-                state: stores[this.storeName].getState()
+                state: stores[this.storeName].store.getState()
             }, {
                 bubbles: false
             });
@@ -48,11 +49,32 @@ class ReduxStoreComponent {
     }
 
     getState() {
-        return stores[this.storeName].getState();
+        return stores[this.storeName].store.getState();
     }
 
     actionChanged(newValue, oldValue) {
-        stores[this.storeName].dispatch(newValue);
+        const augmentedReducer = (state, action) => {
+            const augmentedState = applyLocalStateChangesToState(this, state, action);
+            return stores[this.storeName].rootReducer(augmentedState, action);
+
+            function applyLocalStateChangesToState(context, state, action) {
+                if (action.type === 'LOCAL_STATE_CHANGE') {
+                    if (context.localStateName) {
+                        const newState = Object.assign({}, state, {
+                            [context.localStateName]: action.props
+                        });
+                        return newState;
+                    }
+                    else {
+                        throw 'LOCAL_STATE_CHANGE action dispatched, but localStateName has not been set. You must set the local-state-name attribute on this redux-store-element.';
+                    }
+                }
+                return state;
+            }
+        };
+
+        stores[this.storeName].store.replaceReducer(augmentedReducer);
+        stores[this.storeName].store.dispatch(newValue);
     }
 
     rootReducerSet(newValue, oldValue) {
@@ -68,7 +90,11 @@ class ReduxStoreComponent {
     }
 
     createTheStore() {
-        stores[this.storeName] = createStore(this.rootReducer);
+        stores[this.storeName] = {
+            store: createStore(this.rootReducer),
+            rootReducer: this.rootReducer
+        };
+
         listenersToAdd = listenersToAdd.filter((reduxStoreElement) => {
             const storeExists = (reduxStoreElement.storeName === this.storeName);
 

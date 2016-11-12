@@ -4,11 +4,15 @@ class TestTextComponent {
     }
 
     mapStateToThisDefault(e) {
-        this.$.testTextDefault.innerHTML = e.detail.state.temp;
+        const state = e.detail.state;
+
+        this.querySelector('#testTextDefault').innerHTML = state.temp;
+        this.querySelector('#testLocalState').innerHTML = state.inputArea;
     }
 
     mapStateToThisHello(e) {
-        this.$.testTextHello.innerHTML = e.detail.state.temp;
+        const state = e.detail.state;
+        this.querySelector('#testTextHello').innerHTML = state.temp;
     }
 }
 

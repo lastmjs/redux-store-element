@@ -4,8 +4,8 @@
 
 <dom-module id="test-input-area">
     <template>
-        <redux-store id="redux-store-element" action="[[action]]"></redux-store>
-        <redux-store action="[[action]]" store-name="hello"></redux-store>
+        <redux-store id="redux-store-element" action="[[action]]" local-state-name="inputArea"></redux-store>
+        <redux-store action="[[action]]" store-name="hello" local-state-name="inputArea"></redux-store>
 
         <input id="testInput" type="text">
         <button on-click="handleClick">Dispatch</button>

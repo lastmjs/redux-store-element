@@ -3,16 +3,26 @@ class TestTextComponent {
         this.is = 'test-text';
     }
 
+    localStateChangeClick(e) {
+        this.action = {
+            type: 'LOCAL_STATE_CHANGE',
+            props: {
+                monkey: 5
+            }
+        };
+    }
+
     mapStateToThisDefault(e) {
         const state = e.detail.state;
 
-        this.querySelector('#testTextDefault').innerHTML = state.temp;
-        this.querySelector('#testLocalState').innerHTML = state.inputArea;
+        this.querySelector('#testTextDefaultStore').innerHTML = state.temp;
+
+        state.textComponent && (this.querySelector('#testLocalState').innerHTML = state.textComponent.monkey);
     }
 
-    mapStateToThisHello(e) {
+    mapStateToThisStore2(e) {
         const state = e.detail.state;
-        this.querySelector('#testTextHello').innerHTML = state.temp;
+        this.querySelector('#testTextStore2').innerHTML = state.temp;
     }
 }
 

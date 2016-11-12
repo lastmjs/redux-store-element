@@ -4,11 +4,11 @@
 
 <dom-module id="test-input-area">
     <template>
-        <redux-store id="redux-store-element" action="[[action]]" local-state-name="inputArea"></redux-store>
-        <redux-store action="[[action]]" store-name="hello" local-state-name="inputArea"></redux-store>
+        <redux-store action="[[action]]"></redux-store>
+        <redux-store action="[[action]]" store-name="store2"></redux-store>
 
         <input id="testInput" type="text">
-        <button on-click="handleClick">Dispatch</button>
+        <button on-click="dispatchClick">Dispatch</button>
     </template>
 
     <script>System.import('/example/components/input-area/input-area.component.ts');</script>

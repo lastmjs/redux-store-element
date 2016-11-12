@@ -9,18 +9,15 @@ class TestAppComponent {
         };
 
         this.rootReducerDefault = function(state, action) {
-
             if (!state) {
                 return initialState;
             }
 
             switch(action.type) {
-                case 'CHANGE_TEMP': {
-                    var newState = Object.assign({}, state);
-
-                    newState.temp = action.newTemp;
-
-                    return newState;
+                case 'CHANGE_TEXT': {
+                    return Object.assign({}, state, {
+                        text: action.text
+                    });
                 }
                 default: {
                     return state;
@@ -28,19 +25,16 @@ class TestAppComponent {
             };
         };
 
-        this.rootReducerHello = function(state, action) {
-
+        this.rootReducerStore2 = function(state, action) {
             if (!state) {
                 return initialState;
             }
 
             switch(action.type) {
-                case 'CHANGE_TEMP': {
-                    var newState = Object.assign({}, state);
-
-                    newState.temp = action.newTemp;
-
-                    return newState;
+                case 'CHANGE_TEXT': {
+                    return Object.assign({}, state, {
+                        text: action.text
+                    });
                 }
                 default: {
                     return state;

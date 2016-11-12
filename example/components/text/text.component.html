@@ -4,11 +4,13 @@
 
 <dom-module id="test-text">
     <template>
-        <redux-store on-statechange="mapStateToThisDefault"></redux-store>
-        <redux-store on-statechange="mapStateToThisHello" store-name="hello"></redux-store>
+        <redux-store action="[[action]]" on-statechange="mapStateToThisDefault" local-state-name="textComponent"></redux-store>
+        <redux-store action="[[action]]" on-statechange="mapStateToThisStore2" store-name="store2" local-state-name="textComponent"></redux-store>
 
-        <div id="testTextDefault">Text from input above will go here</div>
-        <div id="testTextHello">Text from input above will go here</div>
+        <div id="testTextDefaultStore">Text from input above will go here, from the default store state</div>
+        <div id="testTextStore2">Text from input above will go here, from the store 2 state</div>
+
+        <button on-click="localStateChangeClick">Change Local State</button>
         <div id="testLocalState">Local state properties will go here</div>
     </template>
 

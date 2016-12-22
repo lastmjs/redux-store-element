@@ -15,11 +15,13 @@
   "devDependencies": {
     "es-no-build": "^0.1.0",
     "http-server": "^0.9.0",
-    "systemjs-builder": "^0.15.26"
+    "systemjs-builder": "^0.15.26",
+    "zwitterion": "^0.1.0"
   },
   "scripts": {
     "http-server": "http-server",
     "build": "node production-builder.js",
-    "start": "node dev-init && npm run build && npm run http-server"
+    "start": "node dev-init && npm run build && npm run http-server",
+    "build": "zwitterion --output-dir dist --build"
   }
 }

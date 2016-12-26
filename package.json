@@ -22,6 +22,6 @@
     "http-server": "http-server",
     "build": "node production-builder.js",
     "start": "node dev-init && npm run build && npm run http-server",
-    "build": "zwitterion --output-dir dist --build"
+    "zwitterion-build": "zwitterion --output-dir dist --build"
   }
 }

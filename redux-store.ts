@@ -100,7 +100,7 @@ class ReduxStoreComponent {
 
     createTheStore() {
         stores[this.storeName] = {
-            store: Redux.createStore(this.rootReducer),
+            store: createStore(this.rootReducer),
             rootReducer: this.rootReducer
         };
 

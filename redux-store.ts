@@ -1,4 +1,4 @@
-import {Redux} from './node_modules/redux/dist/redux.min.js';
+import {createStore} from './node_modules/redux/dist/redux';
 
 let stores = {};
 let listenersToAdd = [];

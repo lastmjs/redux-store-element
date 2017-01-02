@@ -1,4 +1,5 @@
-import * as Redux from '../../node_modules/redux/dist/redux.min.js';
+import {redux} from '../../node_modules/redux/dist/redux.min.js';
+redux; //TODO this is a hack to just get Redux to load the Redux object globally. This line and the previous import cause redux to actually be loaded by the transpiler, setting the Redux global variable. I haven't figured out how to load Redux normally through es6 module syntax yet
 
 let stores = {};
 let listenersToAdd = [];

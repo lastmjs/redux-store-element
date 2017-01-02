@@ -1,9 +1,9 @@
-import {createStore} from '../../node_modules/redux/dist/redux.min.js';
+import Redux from '../../node_modules/redux/dist/redux.min.js';
 
 let stores = {};
 let listenersToAdd = [];
 
-class ReduxStoreComponent {
+class ReduxStore {
     public is;
     public properties;
 
@@ -100,7 +100,7 @@ class ReduxStoreComponent {
 
     createTheStore() {
         stores[this.storeName] = {
-            store: createStore(this.rootReducer),
+            store: Redux.createStore(this.rootReducer),
             rootReducer: this.rootReducer
         };
 
@@ -116,4 +116,4 @@ class ReduxStoreComponent {
     }
 }
 
-Polymer(ReduxStoreComponent);
+Polymer(ReduxStore);

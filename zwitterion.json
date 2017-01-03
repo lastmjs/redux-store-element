@@ -1,8 +1,5 @@
 {
     "files": {
-        "redux-store.html": {
-            "parentImport": true
-        },
         "redux-store.ts": {
             "parentImport": true
         }

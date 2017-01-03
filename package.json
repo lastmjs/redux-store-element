@@ -16,7 +16,7 @@
     "zwitterion": "git+ssh://git@github.com/lastmjs/zwitterion.git"
   },
   "scripts": {
-    "start": "node dev-init && npm run build && npm run http-server",
+    "start": "node dev-init && npm run build && zwitterion --serve-dir example --write-files-off",
     "build": "zwitterion --build-static"
   }
 }

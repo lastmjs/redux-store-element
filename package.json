@@ -1,6 +1,6 @@
 {
   "name": "redux-store-element",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A custom element allowing a more declarative use of Redux.",
   "keywords": [
     "web-components"
@@ -9,9 +9,7 @@
     "type": "git",
     "url": "https://github.com/lastmjs/redux-store-element.git"
   },
-  "dependencies": {
-    "redux": "^3.6.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "zwitterion": "git+ssh://git@github.com/lastmjs/zwitterion.git"
   },

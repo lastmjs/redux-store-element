@@ -17,6 +17,6 @@
   },
   "scripts": {
     "start": "node dev-init && npm run build && npm run http-server",
-    "build": "zwitterion --output-dir dist --build-static"
+    "build": "zwitterion --build-static"
   }
 }

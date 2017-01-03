@@ -1,7 +1,7 @@
 {
   "name": "redux-store-element",
   "version": "0.4.1",
-  "description": "A simple web component written with the Polymer library that allows a more declarative use of Redux.",
+  "description": "A custom element allowing a more declarative use of Redux.",
   "keywords": [
     "web-components"
   ],
@@ -10,18 +10,13 @@
     "url": "https://github.com/lastmjs/redux-store-element.git"
   },
   "dependencies": {
-    "redux": "^3.5.2"
+    "redux": "^3.6.0"
   },
   "devDependencies": {
-    "es-no-build": "^0.1.0",
-    "http-server": "^0.9.0",
-    "systemjs-builder": "^0.15.26",
-    "zwitterion": "^0.1.0"
+    "zwitterion": "git+ssh://git@github.com/lastmjs/zwitterion.git"
   },
   "scripts": {
-    "http-server": "http-server",
-    "build": "node production-builder.js",
     "start": "node dev-init && npm run build && npm run http-server",
-    "zwitterion-build": "zwitterion --output-dir dist --build"
+    "build": "zwitterion --output-dir dist --build-static"
   }
 }

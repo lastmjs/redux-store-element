@@ -41,6 +41,17 @@ Run the following:
 bower install --save redux-store-element
 npm install --save redux
 ```
+
+If you support TypeScript files directly on the client, such as if you are using [Zwitterion](https://github.com/lastmjs/zwitterion), import `redux-store.html`:
+```
+<link rel="import" href="bower_components/redux-store-element/redux-store.html">
+```
+
+Otherwise, import `redux-store-dist.html`:
+```
+<link rel="import" href="bower_components/redux-store-element/redux-store-dist.html">
+```
+
 Now you can import `redux-store.html` and the component is yours to use.
 
 ## Creating the root reducer

@@ -2,10 +2,10 @@
 A custom element allowing a more declarative use of Redux.
 
 # Introduction
-So far the Polymer solutions using Redux that I have seen don't seem to take full advantage of the declarativeness of web components. I'm hoping this element solves that problem.
+So far the Redux web component/custom element solutions that I have seen don't seem to take full advantage of the declarative capabilities of web components and especially custom elements. I'm hoping this element solves that problem.
 
 ## Simple and Declarative
-Before we begin, I just want to highlight how easy it is to work with this component declaratively:
+Before we begin, I just want to highlight how easy it is to work with this element declaratively:
 
 * Hook up your root reducer (similar to Redux `createStore`): 
 

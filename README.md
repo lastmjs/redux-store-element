@@ -1,5 +1,5 @@
 # &lt;redux-store&gt;
-A simple Polymer web component that allows a more declarative use of Redux.
+A custom element allowing a more declarative use of Redux.
 
 # Introduction
 So far the Polymer solutions using Redux that I have seen don't seem to take full advantage of the declarativeness of web components. I'm hoping this element solves that problem.

@@ -59,6 +59,8 @@ This is a web component, meaning its underlying technologies have not yet been i
 <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 ```
 
+The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data-binding systems and DOM interactions:
+
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:
 ```

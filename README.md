@@ -1,4 +1,4 @@
-# redux-store-element
+# &lt;redux-store&gt;
 A simple Polymer web component that allows a more declarative use of Redux.
 
 # Introduction

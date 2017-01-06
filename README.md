@@ -52,8 +52,6 @@ Otherwise, import `redux-store-dist.html`:
 <link rel="import" href="bower_components/redux-store-element/redux-store-dist.html">
 ```
 
-Now you can import `redux-store.html` and the component is yours to use.
-
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:
 ```

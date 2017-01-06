@@ -54,6 +54,11 @@ Otherwise, import `redux-store-dist.html`:
 <link rel="import" href="bower_components/redux-store-element/redux-store-dist.html">
 ```
 
+This is a web component, meaning its underlying technologies have not yet been implemented in all browsers. Include this polyfill (automatically installed with this package) to ensure support across all modern browsers:
+```
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+```
+
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:
 ```

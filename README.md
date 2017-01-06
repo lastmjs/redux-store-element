@@ -2,6 +2,8 @@
 A custom element allowing a more declarative use of Redux.
 
 # Introduction
+This custom element offers the basic Redux API declaratively. It should be compatible with all major front-end JavaScript frameworks and libraries that allow full interaction with the DOM, including [Polymer](https://github.com/Polymer/polymer), [SkateJS](https://github.com/skatejs/skatejs), [Bosonic](https://github.com/bosonic/bosonic), [X-Tag](https://github.com/x-tag/x-tag), [React](https://github.com/facebook/react), [Angular 2](https://github.com/angular/angular), [Angular 1](https://github.com/angular/angular.js/), [Ember](https://github.com/emberjs/ember.js/), vanilla JavaScript, etc.
+
 So far the Redux web component/custom element solutions that I have seen don't seem to take full advantage of the declarative capabilities of web components and especially custom elements. I'm hoping this element solves that problem.
 
 ## Simple and Declarative

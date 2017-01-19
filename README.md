@@ -1,3 +1,4 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
 # &lt;redux-store&gt;
 A custom element allowing a more declarative use of Redux.
 

@@ -10,11 +10,8 @@
     "url": "https://github.com/lastmjs/redux-store-element.git"
   },
   "dependencies": {},
-  "devDependencies": {
-    "zwitterion": "git+ssh://git@github.com/lastmjs/zwitterion.git"
-  },
+  "devDependencies": {},
   "scripts": {
-    "start": "node dev-init && npm run build && zwitterion --serve-dir example --write-files-off",
-    "build": "zwitterion --build-static"
+      "start": "node dev-init.js && cd example && node_modules/.bin/zwitterion-production --watch-files"
   }
 }

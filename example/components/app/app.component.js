@@ -1,9 +1,10 @@
-class TestAppComponent {
-    beforeRegister() {
-        this.is = 'test-app';
-    }
+class TestAppComponent extends Polymer.Element {
+    constructor() { super(); }
+    static get is() { return 'test-app'; }
 
     ready() {
+        super.ready();
+
         var initialState = {
             temp: 'initial temp'
         };
@@ -44,4 +45,4 @@ class TestAppComponent {
     }
 }
 
-Polymer(TestAppComponent);
+window.customElements.define(TestAppComponent.is, TestAppComponent);

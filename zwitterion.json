@@ -1,7 +1,0 @@
-{
-    "files": {
-        "redux-store.ts": {
-            "parentImport": true
-        }
-    }
-}

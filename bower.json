@@ -11,6 +11,6 @@
   ],
   "homepage": "https://github.com/lastmjs/redux-store-element",
   "dependencies": {
-    "polymer": "^1.6.1"
+    "polymer": "2.0.0-rc.2"
   }
 }

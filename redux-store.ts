@@ -80,8 +80,11 @@ class ReduxStore {
             }
         };
 
-        stores[this.storeName].store.replaceReducer(augmentedReducer);
-        stores[this.storeName].store.dispatch(newValue);
+        if(stores[this.storeName]) {
+            stores[this.storeName].store.replaceReducer(augmentedReducer);
+            stores[this.storeName].store.dispatch(newValue);
+        }
+
     }
 
     rootReducerSet(newValue, oldValue) {

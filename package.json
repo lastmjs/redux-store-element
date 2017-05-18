@@ -9,9 +9,11 @@
     "type": "git",
     "url": "https://github.com/lastmjs/redux-store-element.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "redux": "^3.6.0"
+  },
   "devDependencies": {},
   "scripts": {
-      "start": "node dev-init.js && cd example && node_modules/.bin/zwitterion-production --watch-files"
+    "start": "cd example && node_modules/.bin/zwitterion-production --watch-files"
   }
 }

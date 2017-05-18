@@ -1,6 +1,75 @@
-<link rel="import" href="../polymer/polymer.html">
-<script src="../../node_modules/redux/dist/redux.min.js"></script>
+<script src="../redux/dist/redux.min.js"></script>
+<script>
+    let stores = {};
+    let listenersToAdd = [];
 
-<dom-module is="redux-store">
-    <script src="redux-store.js"></script>
-</dom-module>
+    class ReduxStore extends HTMLElement {
+        constructor() {
+            super();
+
+            this._rootReducer = null;
+            this._storeName = null;
+        }
+
+        set rootReducer(val) {
+            this._rootReducer = val;
+            if (this._rootReducer && this._storeName) {
+                this.createTheStore();
+            }
+        }
+
+        set storeName(val) {
+            this._storeName = val;
+            if (this._rootReducer && this._storeName) {
+                this.createTheStore();
+            }
+        }
+
+        set action(val) {
+            stores[this._storeName].store.dispatch(val);
+        }
+
+        connectedCallback() {
+            if (stores[this._storeName]) {
+                this.subscribe();
+            }
+            else {
+                listenersToAdd = [...listenersToAdd, this];
+            }
+        }
+
+        subscribe() {
+            stores[this._storeName].store.subscribe(() => {
+                this.dispatchEvent(new CustomEvent('statechange', {
+                    detail: {
+                        state: stores[this._storeName].store.getState()
+                    },
+                    bubbles: false
+                }));
+            });
+        }
+
+        getState() {
+            return stores[this._storeName].store.getState();
+        }
+
+        createTheStore() {
+            stores[this._storeName] = {
+                store: Redux.createStore(this._rootReducer),
+                rootReducer: this._rootReducer
+            };
+
+            listenersToAdd = listenersToAdd.filter((reduxStoreElement) => {
+                const storeExists = (reduxStoreElement.storeName === this._storeName);
+
+                if (storeExists) {
+                    reduxStoreElement.subscribe();
+                }
+
+                return !storeExists;
+            });
+        }
+    }
+
+    window.customElements.define('redux-store', ReduxStore);
+</script>

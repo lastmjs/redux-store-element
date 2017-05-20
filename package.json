@@ -12,8 +12,14 @@
   "dependencies": {
     "redux": "^3.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "deep-equal": "^1.0.1",
+    "jsverify": "^0.8.2",
+    "scram-engine": "^0.5.1",
+    "tape": "^4.6.3"
+  },
   "scripts": {
-    "start": "cd example && node_modules/.bin/zwitterion-production --watch-files"
+    "test": "electron --show-logs node_modules/scram-engine/main.js --entry-file test/index.html --window",
+    "link": "npm link && npm link redux-store-element"
   }
 }

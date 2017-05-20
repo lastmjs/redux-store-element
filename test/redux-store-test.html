@@ -1,0 +1,173 @@
+<link rel="import" href="../node_modules/redux-store-element/redux-store.html">
+
+<script>
+    // testWrap('blank description', (test, description, numTests) => {
+    //     test(description, (assert) => {
+    //         const result = jsc.check(jsc.forall(() => {
+    //             const result = true;
+    //             return result;
+    //         }), {
+    //             tests: numTests
+    //         });
+    //
+    //         assert.equal(result, true);
+    //         assert.end();
+    //     });
+    // });
+
+    const InitialState = {
+        variable1: 5,
+        variable2: 'this is a string',
+        variable3: {
+            prop1: 1,
+            prop2: 'this is another string'
+        }
+    };
+
+    function RootReducer(state=InitialState, action) {
+        switch(action.type) {
+            case 'CHANGE_VARIABLE_1': {
+                return Object.assign({}, state, {
+                    variable1: action.variable1
+                });
+            }
+            case 'REPLACE_STATE': {
+                return action.state;
+            }
+            default: {
+                return state;
+            }
+        }
+    }
+
+    class ReduxStoreTest extends HTMLElement {
+        _beforeTest() {
+            const reduxStoreElement = document.createElement('redux-store');
+            this.appendChild(reduxStoreElement);
+            return reduxStoreElement;
+        }
+
+        _afterTest(reduxStoreElement) {
+            this.removeChild(reduxStoreElement);
+        }
+
+        prepareTests(testWrap) {
+            const jsc = require('jsverify');
+            const deepEqual = require('deep-equal');
+
+            testWrap('once the root reducer is set actions can fire', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+                        reduxStoreElement.action = {
+                            type: 'CHANGE_VARIABLE_1',
+                            variable1: number
+                        };
+                        const state = reduxStoreElement.getState();
+
+                        const result = state.variable1 === number;
+
+                        this._afterTest(reduxStoreElement);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            //TODO potentially add to this test with the new getStore method
+            testWrap('if no store name is set the store name is DEFAULT_STORE', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+
+                        const result = reduxStoreElement._storeName === 'DEFAULT_STORE';
+
+                        this._afterTest(reduxStoreElement);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            testWrap('getState returns the state', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+                        reduxStoreElement.action = {
+                            type: 'REPLACE_STATE',
+                            state: InitialState
+                        };
+                        const state = reduxStoreElement.getState();
+
+                        const result = deepEqual(InitialState, state);
+
+                        this._afterTest(reduxStoreElement);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            testWrap('setting a different store name creates a store with that name', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nestring, (storeName) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+                        reduxStoreElement.storeName = storeName;
+                        const stores = reduxStoreElement.getStores();
+
+                        const storeNameIsCorrect = reduxStoreElement.storeName === storeName;
+                        const storeNameStoreIsDefined = stores[storeName].store;
+
+                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
+
+                        this._afterTest(reduxStoreElement);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            // Order of properties should not matter
+
+            // Setting initial properties through attributes should work
+
+            // If no store name is set, all actions fire against the DEFAULT_STORE (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+
+            // If a store name is set, all actions fire against that store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+
+            // Firing actions raises the statechange event with the new state (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+
+            // setting the root reducer multiple times has no effect on the store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+        }
+    }
+
+    window.customElements.define('redux-store-test', ReduxStoreTest);
+</script>

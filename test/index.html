@@ -2,10 +2,15 @@
 
 <html>
     <head>
+        <base href="../">
+        <script src="zwitterion-config.js"></script>
+        <link rel="import" href="bower_components/guesswork/test-runner.html">
         <link rel="import" href="test/redux-store-test.html">
     </head>
 
     <body>
-        <redux-store-test></redux-store-test>
+        <test-runner>
+            <redux-store-test></redux-store-test>
+        </test-runner>
     </body>
 </html>

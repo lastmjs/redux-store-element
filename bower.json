@@ -1,0 +1,23 @@
+{
+  "name": "redux-store-element",
+  "description": "A custom element allowing a more declarative use of Redux.",
+  "main": "",
+  "authors": [
+    "Jordan Last <jordan.michael.last@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "web-components"
+  ],
+  "homepage": "https://github.com/lastmjs/redux-store-element",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "guesswork": "^0.0.3"
+  }
+}

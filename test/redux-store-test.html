@@ -81,15 +81,44 @@
                 });
             });
 
-            //TODO potentially add to this test with the new getStore method
             testWrap('if no store name is set the store name is DEFAULT_STORE', (test, description, numTests) => {
                 test(description, (assert) => {
                     const result = jsc.check(jsc.forall(jsc.number, (number) => {
                         const reduxStoreElement = this._beforeTest();
 
                         reduxStoreElement.rootReducer = RootReducer;
+                        const stores = reduxStoreElement.getStores();
 
-                        const result = reduxStoreElement._storeName === 'DEFAULT_STORE';
+                        const storeNameIsCorrect = reduxStoreElement.storeName === 'DEFAULT_STORE';
+                        const storeNameStoreIsDefined = !!stores['DEFAULT_STORE'].store;
+
+                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
+
+                        this._afterTest(reduxStoreElement);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            testWrap('setting a different store name creates a store with that name', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nestring, (storeName) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+                        reduxStoreElement.storeName = storeName;
+                        const stores = reduxStoreElement.getStores();
+
+                        const storeNameIsCorrect = reduxStoreElement.storeName === storeName;
+                        const storeNameStoreIsDefined = !!stores[storeName].store;
+
+                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
 
                         this._afterTest(reduxStoreElement);
 
@@ -116,32 +145,6 @@
                         const state = reduxStoreElement.getState();
 
                         const result = deepEqual(InitialState, state);
-
-                        this._afterTest(reduxStoreElement);
-
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
-            });
-
-            testWrap('setting a different store name creates a store with that name', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nestring, (storeName) => {
-                        const reduxStoreElement = this._beforeTest();
-
-                        reduxStoreElement.rootReducer = RootReducer;
-                        reduxStoreElement.storeName = storeName;
-                        const stores = reduxStoreElement.getStores();
-
-                        const storeNameIsCorrect = reduxStoreElement.storeName === storeName;
-                        const storeNameStoreIsDefined = stores[storeName].store;
-
-                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
 
                         this._afterTest(reduxStoreElement);
 

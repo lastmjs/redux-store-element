@@ -39,18 +39,12 @@ That is the entirety of the API exposed to you through HTML.
 # Installation and Setup
 Run the following:
 ```
-bower install --save redux-store-element
-npm install --save redux
+npm install --save redux-store-element
 ```
 
-If you support TypeScript files directly on the client, such as if you are using [Zwitterion](https://github.com/lastmjs/zwitterion), import `redux-store.html`:
+Now import `redux-store.html`:
 ```
-<link rel="import" href="bower_components/redux-store-element/redux-store.html">
-```
-
-Otherwise, import `redux-store-dist.html`:
-```
-<link rel="import" href="bower_components/redux-store-element/redux-store-dist.html">
+<link rel="import" href="node_modules/redux-store-element/redux-store.html">
 ```
 
 This is a web component, meaning its underlying technologies have not yet been implemented in all browsers. Include this polyfill (automatically installed with this package) to ensure support across all modern browsers:

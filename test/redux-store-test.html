@@ -1,20 +1,6 @@
 <link rel="import" href="../node_modules/redux-store-element/redux-store.html">
 
 <script>
-    // testWrap('blank description', (test, description, numTests) => {
-    //     test(description, (assert) => {
-    //         const result = jsc.check(jsc.forall(() => {
-    //             const result = true;
-    //             return result;
-    //         }), {
-    //             tests: numTests
-    //         });
-    //
-    //         assert.equal(result, true);
-    //         assert.end();
-    //     });
-    // });
-
     const InitialState = {
         variable1: 5,
         variable2: 'this is a string',
@@ -214,13 +200,158 @@
                 });
             });
 
-            // If no store name is set, all actions fire against the DEFAULT_STORE (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+            testWrap('if no store name is set all actions fire against the DEFAULT_STORE', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nat(2), jsc.nat(3), jsc.number, (numChildrenPerLevel, numLevels, numToSetInAction) => {
+                        const reduxStoreElement = this._beforeTest();
 
-            // If a store name is set, all actions fire against that store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+                        reduxStoreElement.rootReducer = RootReducer;
+                        const rootElement = document.createElement('div');
+                        const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, '<redux-store id="reduxStoreElement"></redux-store>');
+                        this.appendChild(rootElementWithChildren);
 
-            // Firing actions raises the statechange event with the new state (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+                        const result = this._allChildrenFireActionsCorrectly(rootElementWithChildren, numToSetInAction);
 
-            // setting the root reducer multiple times has no effect on the store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+                        this._afterTest(reduxStoreElement);
+                        this.removeChild(rootElementWithChildren);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            testWrap('if a store name is set all actions fire against that store', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nat(2), jsc.nat(3), jsc.number, jsc.nestring, (numChildrenPerLevel, numLevels, numToSetInAction, storeName) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+                        reduxStoreElement.storeName = window.encodeURI(storeName);
+
+                        const rootElement = document.createElement('div');
+                        const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, `<redux-store id="reduxStoreElement" store-name="${window.encodeURI(storeName)}"></redux-store>`);
+                        this.appendChild(rootElementWithChildren);
+
+                        const result = this._allChildrenFireActionsCorrectly(rootElementWithChildren, numToSetInAction);
+
+                        this._afterTest(reduxStoreElement);
+                        this.removeChild(rootElementWithChildren);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            testWrap('firing actions raises the statechange event with the new state', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nat(2), jsc.nat(3), (numChildrenPerLevel, numLevels) => {
+                        const reduxStoreElement = this._beforeTest();
+
+                        reduxStoreElement.rootReducer = RootReducer;
+
+                        const rootElement = document.createElement('div');
+                        const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, `<redux-store id="reduxStoreElement"></redux-store>`);
+                        this.appendChild(rootElementWithChildren);
+
+                        const result = this._allChildrenCaptureStatechangeEvent(rootElementWithChildren);
+
+                        this._afterTest(reduxStoreElement);
+                        this.removeChild(rootElementWithChildren);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
+
+            // TODO setting the root reducer multiple times has no effect on the store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
+        }
+
+        _createChildHierarchy(element, numChildrenPerLevel, numLevels, childInnerHTML) {
+            if (numLevels === 0) {
+                return element;
+            }
+
+            const children = new Array(numChildrenPerLevel).fill(null).map(() => {
+                const child = document.createElement('div');
+                child.innerHTML = childInnerHTML;
+                return child;
+            });
+
+            const newElement = children.reduce((result, child) => {
+                result.appendChild(child);
+                return result;
+            }, element);
+
+            //TODO I would like to figure out how to do this with a map or reduce or such, making it more functional/declarative/recursive
+            children.forEach((child) => {
+                this._createChildHierarchy(child, numChildrenPerLevel, numLevels - 1, childInnerHTML);
+            });
+
+            return newElement;
+        }
+
+        _allChildrenFireActionsCorrectly(element, numToSetInAction) {
+            const children = Array.from(element.children).filter((child) => child.tagName !== 'REDUX-STORE');
+            if (children.length === 0) return true;
+
+            const actionsFiredCorrectly = children.reduce((result, child) => {
+                const reduxStoreElement = child.querySelector('#reduxStoreElement');
+                reduxStoreElement.action = {
+                    type: 'CHANGE_VARIABLE_1',
+                    variable1: numToSetInAction
+                };
+                const state = reduxStoreElement.getState();
+                if (state.variable1 !== numToSetInAction) return false;
+                return result;
+            }, true);
+
+            return actionsFiredCorrectly && children.reduce((result, child) => {
+                const allActionsFiredCorrectly = this._allChildrenFireActionsCorrectly(child, numToSetInAction);
+                if (!allActionsFiredCorrectly) return false;
+                return result;
+            }, true);
+        }
+
+        //TODO this function is almost the same as _allChildrenFireActionsCorrectly, extract the similar pieces into a function and pass in a function with the differences
+        _allChildrenCaptureStatechangeEvent(element) {
+            const children = Array.from(element.children).filter((child) => child.tagName !== 'REDUX-STORE');
+            if (children.length === 0) return true;
+
+            const actionsFiredCorrectly = children.reduce((result, child) => {
+                let eventFired = false;
+                let theEvent;
+                const reduxStoreElement = child.querySelector('#reduxStoreElement');
+                reduxStoreElement.addEventListener('statechange', (event) => { //TODO the evil is unspeakable. Mutating the variables at the top of the function from this function, perhaps monads could help us fix this in the future
+                    eventFired = true;
+                    theEvent = event;
+                });
+                reduxStoreElement.action = {
+                    type: 'DEFAULT_ACTION'
+                };
+                if (!eventFired || !theEvent.detail.state) return false;
+                return result;
+            }, true);
+
+            return actionsFiredCorrectly && children.reduce((result, child) => {
+                const allActionsFiredCorrectly = this._allChildrenFireActionsCorrectly(child);
+                if (!allActionsFiredCorrectly) return false;
+                return result;
+            }, true);
         }
     }
 

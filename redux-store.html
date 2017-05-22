@@ -80,6 +80,10 @@
                     bubbles: false
                 }));
             });
+
+            this.dispatchEvent(new CustomEvent('subscribedtostore', {
+                bubbles: false
+            }));
         }
 
         getState() {

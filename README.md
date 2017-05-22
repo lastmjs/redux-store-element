@@ -87,9 +87,13 @@ Now import `redux-store.html`:
 <link rel="import" href="node_modules/redux-store-element/redux-store.html">
 ```
 
-This is a web component, meaning its underlying technologies have not yet been implemented in all browsers. Include this polyfill (automatically installed with this package) to ensure support across all modern browsers:
+This custom element depends on the custom elements and HTML imports web component specifications, which are supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
 ```
-<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+// CONSOLE
+npm install --save @webcomponents/webcomponentsjs
+
+// HTML
+<script src="node_modules/webcomponentsjs/webcomponents-hi-ce.js"></script>
 ```
 
 The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data-binding systems and DOM interactions:

@@ -51,7 +51,7 @@ Before we begin, I just want to highlight how easy it is to work with this eleme
     this.valueToBind = state.valueToBind;
   }
   ```
-* Explicitly grab the state, but only if you must, prefer listening for state changes (similar to Redux `getState`):
+* Explicitly grab the state (similar to Redux `getState`):
 
   ```
   // HTML

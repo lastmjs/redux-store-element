@@ -1,7 +1,6 @@
 <script src="../redux/dist/redux.min.js"></script>
 <script>
     let stores = {};
-    let listenersToAdd = [];
     let currentElementId = -1;
 
     class ReduxStore extends HTMLElement {
@@ -61,16 +60,25 @@
         }
 
         set action(val) {
+            if (!stores[this._storeName]) {
+                setTimeout(() => {
+                    this.action = val;
+                });
+                return;
+            }
+
             stores[this._storeName].store.dispatch(val);
         }
 
         connectedCallback() {
-            if (stores[this._storeName]) {
-                this.subscribe();
+            if (!stores[this._storeName]) {
+                setTimeout(() => {
+                    this.connectedCallback();
+                });
+                return;
             }
-            else {
-                listenersToAdd = [...listenersToAdd, this];
-            }
+
+            this.subscribe();
         }
 
         subscribe() {
@@ -82,10 +90,6 @@
                     bubbles: false
                 }));
             });
-
-            this.dispatchEvent(new CustomEvent('subscribedtostore', {
-                bubbles: false
-            }));
         }
 
         getState() {
@@ -103,16 +107,6 @@
                 store: Redux.createStore(this._rootReducer),
                 rootReducer: this._rootReducer
             };
-
-            listenersToAdd = listenersToAdd.filter((reduxStoreElement) => {
-                const storeExists = (reduxStoreElement.storeName === this._storeName);
-
-                if (storeExists) {
-                    reduxStoreElement.subscribe();
-                }
-
-                return !storeExists;
-            });
         }
     }
 

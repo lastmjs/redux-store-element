@@ -10,6 +10,7 @@
 
             this._rootReducer = null;
             this._storeName = 'DEFAULT_STORE';
+            this.elementId = ++currentElementId;
         }
 
         static get observedAttributes() {
@@ -61,10 +62,6 @@
 
         set action(val) {
             stores[this._storeName].store.dispatch(val);
-        }
-
-        get elementId() {
-            return `redux-store-element-${++currentElementId}`;
         }
 
         connectedCallback() {

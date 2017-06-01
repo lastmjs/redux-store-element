@@ -2,6 +2,7 @@
 <script>
     let stores = {};
     let listenersToAdd = [];
+    let currentElementId = -1;
 
     class ReduxStore extends HTMLElement {
         constructor() {
@@ -60,6 +61,10 @@
 
         set action(val) {
             stores[this._storeName].store.dispatch(val);
+        }
+
+        get elementId() {
+            return `redux-store-element-${++currentElementId}`;
         }
 
         connectedCallback() {

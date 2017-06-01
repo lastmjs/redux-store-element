@@ -10,7 +10,7 @@
 
             this._rootReducer = null;
             this._storeName = 'DEFAULT_STORE';
-            this.elementId = ++currentElementId;
+            this.elementId = `redux-store-element-${++currentElementId}`;
         }
 
         static get observedAttributes() {

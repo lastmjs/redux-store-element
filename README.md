@@ -11,30 +11,70 @@ Before we begin, I just want to highlight how easy it is to work with this eleme
 * Hook up your root reducer (similar to Redux `createStore`): 
 
   ```
+  // HTML
   <redux-store root-reducer="[[rootReducer]]"></redux-store>
+  
+  // JS
+  import {RootReducer} from '../../redux/reducers';
+  
+  ...
+  
+  connectedCallback() {
+    this.rootReducer = RootReducer;
+  }
   ```
 * Dispatch actions (similar to Redux `dispatch`): 
 
   ```
+  // HTML
   <redux-store action="[[action]]"></redux-store>
+  
+  // JS
+  fireAnAction() {
+    this.action = {
+      type: 'CHANGE_THE_STATE'
+    };
+  }
   ```
 * Listen for state changes (similar to Redux `subscribe`): 
 
   ```
-  <redux-store on-statechange="mapStateToThis"></redux-store>
+  // HTML
+  <redux-store on-statechange="stateChange"></redux-store>
+  
+  [[valueToBind]]
+  
+  // JS
+  stateChange(e) {
+    const state = e.detail.state;
+  
+    this.valueToBind = state.valueToBind;
+  }
   ```
-* Explicitly grab the state, but only if you must, prefer listening for state changes (similar to Redux `getState`):
+* Explicitly grab the state (similar to Redux `getState`):
 
   ```
-  //HTML
+  // HTML
   <redux-store id="redux-store-element"></redux-store>
   
-  //JS
-  const reduxStoreElement = this.querySelector('#redux-store-element');
-  const state = reduxStoreElement.getState();
+  // JS
+  getReduxState() {
+    const reduxStoreElement = this.querySelector('#redux-store-element');
+    const state = reduxStoreElement.getState();
+  }
   ```
+* Ensure component is subscribed to the store before firing actions:
+```
+// HTML
+<redux-store on-subscribedtostore="subscribedToStore"></redux-store>
 
-That is the entirety of the API exposed to you through HTML.
+// JS
+subscribedToStore() {
+  this.action = {
+    type: 'CHANGE_THE_STATE'
+  };
+}
+```
 
 # Installation and Setup
 Run the following:
@@ -47,9 +87,13 @@ Now import `redux-store.html`:
 <link rel="import" href="node_modules/redux-store-element/redux-store.html">
 ```
 
-This is a web component, meaning its underlying technologies have not yet been implemented in all browsers. Include this polyfill (automatically installed with this package) to ensure support across all modern browsers:
+This custom element depends on the custom elements and HTML imports web component specifications, which are supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
 ```
-<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+// CONSOLE
+npm install --save @webcomponents/webcomponentsjs
+
+// HTML
+<script src="node_modules/webcomponentsjs/webcomponents-hi-ce.js"></script>
 ```
 
 The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data-binding systems and DOM interactions:

@@ -63,23 +63,11 @@ Before we begin, I just want to highlight how easy it is to work with this eleme
     const state = reduxStoreElement.getState();
   }
   ```
-* Ensure component is subscribed to the store before firing actions:
-```
-// HTML
-<redux-store on-subscribedtostore="subscribedToStore"></redux-store>
-
-// JS
-subscribedToStore() {
-  this.action = {
-    type: 'CHANGE_THE_STATE'
-  };
-}
-```
 
 # Installation and Setup
 Run the following:
 ```
-npm install --save redux-store-element
+npm install redux-store-element
 ```
 
 Now import `redux-store.html`:
@@ -93,7 +81,7 @@ This custom element depends on the custom elements and HTML imports web componen
 npm install --save @webcomponents/webcomponentsjs
 
 // HTML
-<script src="node_modules/webcomponentsjs/webcomponents-hi-ce.js"></script>
+<script src="node_modules/webcomponentsjs/webcomponents-lite.js"></script>
 ```
 
 The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data-binding systems and DOM interactions:
@@ -212,15 +200,14 @@ By default, there is one store for the entire application, meaning that each ins
 * Listen for state changes: `<redux-store on-statechange="mapStateToThis" store-name="fooStore"></redux-store>`
 
 ## Important Things to Know:
-* You must pass in your root reducer to any `<redux-store></redux-store>` before you can dispatch actions and receive state changes
+* You must pass in your root reducer to any `<redux-store></redux-store>` before actions will be dispatched and state change events raised
 * By default there is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
-* The `statechange` event supplies the redux state in the `detail.state` property on the event
+* The `statechange` event supplies the redux state in the `detail.state` property of the event
 
 ## Development
-To play with the example, clone the repo, go to the root of the project, and run the following commands:
 ```
 bower install
 npm install
-npm start
+npm run link
+npm run test
 ```
-Open up to localhost:[whatever port the terminal says]. The port is usually localhost:8080. Go to the example directory and open example/index.html.

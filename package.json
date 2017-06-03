@@ -19,7 +19,7 @@
     "scram-engine": "^0.6.1"
   },
   "scripts": {
-    "test": "npm install -g bower && bower install && npm run link && electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
+    "test": "npm run link && electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
     "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
     "link": "npm link && npm link redux-store-element"
   }

@@ -9,8 +9,17 @@
     </head>
 
     <body>
-        <test-runner>
+        <test-runner id="testRunner">
             <redux-store-test></redux-store-test>
         </test-runner>
+
+        <script>
+            if (window.ELECTRON_CONSOLE_ARGUMENTS.autoRun) {
+                setTimeout(() => {
+                    document.getElementById('testRunner').autoRun = true;
+                    document.getElementById('testRunner').runTests();
+                }, 5000);
+            }
+        </script>
     </body>
 </html>

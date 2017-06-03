@@ -40,6 +40,7 @@
         prepareTests(testWrap) {
             const jsc = require('jsverify');
             const deepEqual = require('deep-equal');
+            const {ipcRenderer} = require('electron');
 
             testWrap('once the root reducer is set actions can fire', (test, description, numTests) => {
                 test(description, (assert) => {
@@ -61,6 +62,12 @@
                     }), {
                         tests: numTests
                     });
+
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
 
                     assert.equal(result, true);
                     assert.end();
@@ -86,6 +93,12 @@
                     }), {
                         tests: numTests
                     });
+
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
 
                     assert.equal(result, true);
                     assert.end();
@@ -113,6 +126,12 @@
                         tests: numTests
                     });
 
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
+
                     assert.equal(result, true);
                     assert.end();
                 });
@@ -139,6 +158,12 @@
                         tests: numTests
                     });
 
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
+
                     assert.equal(result, true);
                     assert.end();
                 });
@@ -163,6 +188,12 @@
                     }), {
                         tests: numTests
                     });
+
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
 
                     assert.equal(result, true);
                     assert.end();
@@ -195,6 +226,12 @@
                         tests: numTests
                     });
 
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
+
                     assert.equal(result, true);
                     assert.end();
                 });
@@ -219,6 +256,12 @@
                     }), {
                         tests: numTests
                     });
+
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
 
                     assert.equal(result, true);
                     assert.end();
@@ -247,6 +290,12 @@
                         tests: numTests
                     });
 
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
+
                     assert.equal(result, true);
                     assert.end();
                 });
@@ -273,6 +322,12 @@
                         tests: numTests
                     });
 
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    if (result !== true) {
+                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    }
+
                     assert.equal(result, true);
                     assert.end();
                 });
@@ -281,6 +336,7 @@
             // TODO setting the root reducer multiple times has no effect on the store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)
         }
 
+        //TODO make this test more like in jfive-web-components
         _createChildHierarchy(element, numChildrenPerLevel, numLevels, childInnerHTML) {
             if (numLevels === 0) {
                 return element;

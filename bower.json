@@ -18,6 +18,7 @@
     "tests"
   ],
   "devDependencies": {
-    "guesswork": "^0.0.3"
-  }
+    "guesswork": "^0.0.4"
+  },
+  "dependencies": {}
 }

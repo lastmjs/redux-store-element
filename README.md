@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/lastmjs/redux-store-element.svg?style=svg)](https://circleci.com/gh/lastmjs/redux-store-element) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
+[![CircleCI](https://circleci.com/gh/lastmjs/redux-store-element.svg?style=shield)](https://circleci.com/gh/lastmjs/redux-store-element) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
 
 # &lt;redux-store&gt;
 A custom element allowing a more declarative use of Redux.

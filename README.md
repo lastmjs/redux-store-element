@@ -76,7 +76,7 @@ Now import `redux-store.html`:
 <link rel="import" href="node_modules/redux-store-element/redux-store.html">
 ```
 
-This custom element depends on the custom elements and HTML imports web component specifications, which are supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
+This custom element depends on the custom elements and HTML imports web component specifications, which are not supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
 ```
 // CONSOLE
 npm install --save @webcomponents/webcomponentsjs

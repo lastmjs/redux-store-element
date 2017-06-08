@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/lastmjs/redux-store-element.svg?style=shield)](https://circleci.com/gh/lastmjs/redux-store-element) [![npm version](https://img.shields.io/npm/v/redux-store-element.svg?style=flat)](https://www.npmjs.com/package/redux-store-element) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/lastmjs/redux-store-element)
+[![CircleCI](https://circleci.com/gh/lastmjs/redux-store-element.svg?style=shield)](https://circleci.com/gh/lastmjs/redux-store-element) [![npm version](https://img.shields.io/npm/v/redux-store-element.svg?style=flat)](https://www.npmjs.com/package/redux-store-element) [![dependency Status](https://david-dm.org/lastmjs/redux-store-element/status.svg)](https://david-dm.org/lastmjs/redux-store-element) [![devDependency Status](https://david-dm.org/lastmjs/redux-store-element/dev-status.svg)](https://david-dm.org/lastmjs/redux-store-element?type=dev) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/lastmjs/redux-store-element)
 
 # &lt;redux-store&gt;
 A custom element allowing a more declarative use of Redux.
@@ -76,7 +76,7 @@ Now import `redux-store.html`:
 <link rel="import" href="node_modules/redux-store-element/redux-store.html">
 ```
 
-This custom element depends on the custom elements and HTML imports web component specifications, which are supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
+This custom element depends on the custom elements and HTML imports web component specifications, which are not supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
 ```
 // CONSOLE
 npm install --save @webcomponents/webcomponentsjs

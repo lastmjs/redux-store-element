@@ -60,13 +60,6 @@
         }
 
         set action(val) {
-            if (!stores[this._storeName]) {
-                setTimeout(() => {
-                    this.action = val;
-                });
-                return;
-            }
-
             stores[this._storeName].store.dispatch(val);
         }
 

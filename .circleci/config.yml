@@ -7,8 +7,7 @@ jobs:
             - image: circleci/node:8.1.2
         steps:
             - checkout
-            - run: sudo su
             - run:
                 name: Install Bower dependencies
-                command: npm install -g bower && bower install
-            - run: npm test
+                command: sudo npm install -g bower && bower install
+            - run: sudo npm test

@@ -12,5 +12,5 @@ jobs:
                 command: sudo npm install -g bower && bower install
             - run:
                 name: Install Electron dependencies
-                command: sudo apt-get install libgtk2.0-0 && sudo apt-get install libxtst6 && sudo apt-get install libXss1
+                command: sudo apt-get install libgtk2.0-0 && sudo apt-get install libxtst6 && sudo apt-get install libXss1 && sudo apt-get install Libgconf-2-4
             - run: sudo npm test

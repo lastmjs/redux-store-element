@@ -9,4 +9,4 @@ jobs:
             - checkout
             - run:
                 name: Install Bower dependencies
-                command: npm install -g bower && bower install
+                command: bower install

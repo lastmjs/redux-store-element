@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "deep-equal": "^1.0.1",
-    "guesswork": "^0.1.0",
+    "guesswork": "^0.1.1",
     "scram-engine": "^0.6.1"
   },
   "scripts": {

@@ -10,4 +10,4 @@ jobs:
         steps:
             - run:
                 name: Install Bower dependencies
-                command: npm install -g bower && bower install
+                command: npm install bower && node_modules/.bin/bower install

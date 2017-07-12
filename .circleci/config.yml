@@ -10,3 +10,4 @@ jobs:
             - run:
                 name: Install Bower dependencies
                 command: sudo npm install -g bower && bower install
+            - run: npm test

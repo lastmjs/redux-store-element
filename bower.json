@@ -17,8 +17,8 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "guesswork": "^0.0.4"
-  },
-  "dependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "polymer": "^2.0.1"
+  }
 }

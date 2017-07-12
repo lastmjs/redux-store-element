@@ -37,300 +37,164 @@
             this.removeChild(reduxStoreElement);
         }
 
-        prepareTests(testWrap) {
+        prepareTests(test) {
             const jsc = require('jsverify');
             const deepEqual = require('deep-equal');
-            const {ipcRenderer} = require('electron');
 
-            testWrap('once the root reducer is set actions can fire', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('once the root reducer is set actions can fire', [jsc.number], (number) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        reduxStoreElement.action = {
-                            type: 'CHANGE_VARIABLE_1',
-                            variable1: number
-                        };
-                        const state = reduxStoreElement.getState();
+                reduxStoreElement.rootReducer = RootReducer;
+                reduxStoreElement.action = {
+                    type: 'CHANGE_VARIABLE_1',
+                    variable1: number
+                };
+                const state = reduxStoreElement.getState();
 
-                        const result = state.variable1 === number;
+                const result = state.variable1 === number;
 
-                        this._afterTest(reduxStoreElement);
+                this._afterTest(reduxStoreElement);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('if no store name is set the store name is DEFAULT_STORE', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('if no store name is set the store name is DEFAULT_STORE', [jsc.number], (number) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        const stores = reduxStoreElement.getStores();
+                reduxStoreElement.rootReducer = RootReducer;
+                const stores = reduxStoreElement.getStores();
 
-                        const storeNameIsCorrect = reduxStoreElement.storeName === 'DEFAULT_STORE';
-                        const storeNameStoreIsDefined = !!stores['DEFAULT_STORE'].store;
+                const storeNameIsCorrect = reduxStoreElement.storeName === 'DEFAULT_STORE';
+                const storeNameStoreIsDefined = !!stores['DEFAULT_STORE'].store;
 
-                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
+                const result = storeNameIsCorrect && storeNameStoreIsDefined;
 
-                        this._afterTest(reduxStoreElement);
+                this._afterTest(reduxStoreElement);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('setting a different store name creates a store with that name', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nestring, (storeName) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('setting a different store name creates a store with that name', [jsc.nestring], (storeName) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        reduxStoreElement.storeName = storeName;
-                        const stores = reduxStoreElement.getStores();
+                reduxStoreElement.rootReducer = RootReducer;
+                reduxStoreElement.storeName = storeName;
+                const stores = reduxStoreElement.getStores();
 
-                        const storeNameIsCorrect = reduxStoreElement.storeName === storeName;
-                        const storeNameStoreIsDefined = !!stores[storeName].store;
+                const storeNameIsCorrect = reduxStoreElement.storeName === storeName;
+                const storeNameStoreIsDefined = !!stores[storeName].store;
 
-                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
+                const result = storeNameIsCorrect && storeNameStoreIsDefined;
 
-                        this._afterTest(reduxStoreElement);
+                this._afterTest(reduxStoreElement);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('getState returns the state', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('getState returns the state', [jsc.number], (number) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        reduxStoreElement.action = {
-                            type: 'REPLACE_STATE',
-                            state: InitialState
-                        };
-                        const state = reduxStoreElement.getState();
+                reduxStoreElement.rootReducer = RootReducer;
+                reduxStoreElement.action = {
+                    type: 'REPLACE_STATE',
+                    state: InitialState
+                };
+                const state = reduxStoreElement.getState();
 
-                        const result = deepEqual(InitialState, state);
+                const result = deepEqual(InitialState, state);
 
-                        this._afterTest(reduxStoreElement);
+                this._afterTest(reduxStoreElement);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('set initial storeName property through attribute', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.number, (number) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('set initial storeName property through attribute', [jsc.number], (number) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        reduxStoreElement.setAttribute('store-name', 'TEST_STORE');
+                reduxStoreElement.rootReducer = RootReducer;
+                reduxStoreElement.setAttribute('store-name', 'TEST_STORE');
 
-                        const storeNameIsCorrect = reduxStoreElement.storeName === 'TEST_STORE';
-                        const storeNameStoreIsDefined = !!stores['TEST_STORE'].store;
+                const storeNameIsCorrect = reduxStoreElement.storeName === 'TEST_STORE';
+                const storeNameStoreIsDefined = !!stores['TEST_STORE'].store;
 
-                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
+                const result = storeNameIsCorrect && storeNameStoreIsDefined;
 
-                        this._afterTest(reduxStoreElement);
+                this._afterTest(reduxStoreElement);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('the order of setting the rootReducer and storeName properties should not matter', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.number(0, 1), (number) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('the order of setting the rootReducer and storeName properties should not matter', [jsc.number(0, 1)], (number) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        if (number === 0) {
-                            reduxStoreElement.rootReducer = RootReducer;
-                            reduxStoreElement.storeName = 'TEST_STORE';
-                        }
-                        else {
-                            reduxStoreElement.storeName = 'TEST_STORE';
-                            reduxStoreElement.rootReducer = RootReducer;
-                        }
+                if (number === 0) {
+                    reduxStoreElement.rootReducer = RootReducer;
+                    reduxStoreElement.storeName = 'TEST_STORE';
+                }
+                else {
+                    reduxStoreElement.storeName = 'TEST_STORE';
+                    reduxStoreElement.rootReducer = RootReducer;
+                }
 
-                        const storeNameIsCorrect = reduxStoreElement.storeName === 'TEST_STORE';
-                        const storeNameStoreIsDefined = !!stores['TEST_STORE'].store;
+                const storeNameIsCorrect = reduxStoreElement.storeName === 'TEST_STORE';
+                const storeNameStoreIsDefined = !!stores['TEST_STORE'].store;
 
-                        const result = storeNameIsCorrect && storeNameStoreIsDefined;
+                const result = storeNameIsCorrect && storeNameStoreIsDefined;
 
-                        this._afterTest(reduxStoreElement);
+                this._afterTest(reduxStoreElement);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('if no store name is set all actions fire against the DEFAULT_STORE', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nat(2), jsc.nat(3), jsc.number, (numChildrenPerLevel, numLevels, numToSetInAction) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('if no store name is set all actions fire against the DEFAULT_STORE', [jsc.nat(2), jsc.nat(3), jsc.number], (numChildrenPerLevel, numLevels, numToSetInAction) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        const rootElement = document.createElement('div');
-                        const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, '<redux-store id="reduxStoreElement"></redux-store>');
-                        this.appendChild(rootElementWithChildren);
+                reduxStoreElement.rootReducer = RootReducer;
+                const rootElement = document.createElement('div');
+                const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, '<redux-store id="reduxStoreElement"></redux-store>');
+                this.appendChild(rootElementWithChildren);
 
-                        const result = this._allChildrenFireActionsCorrectly(rootElementWithChildren, numToSetInAction);
+                const result = this._allChildrenFireActionsCorrectly(rootElementWithChildren, numToSetInAction);
 
-                        this._afterTest(reduxStoreElement);
-                        this.removeChild(rootElementWithChildren);
+                this._afterTest(reduxStoreElement);
+                this.removeChild(rootElementWithChildren);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('if a store name is set all actions fire against that store', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nat(2), jsc.nat(3), jsc.number, jsc.nestring, (numChildrenPerLevel, numLevels, numToSetInAction, storeName) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('if a store name is set all actions fire against that store', [jsc.nat(2), jsc.nat(3), jsc.number, jsc.nestring], (numChildrenPerLevel, numLevels, numToSetInAction, storeName) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
-                        reduxStoreElement.storeName = window.encodeURI(storeName);
+                reduxStoreElement.rootReducer = RootReducer;
+                reduxStoreElement.storeName = window.encodeURI(storeName);
 
-                        const rootElement = document.createElement('div');
-                        const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, `<redux-store id="reduxStoreElement" store-name="${window.encodeURI(storeName)}"></redux-store>`);
-                        this.appendChild(rootElementWithChildren);
+                const rootElement = document.createElement('div');
+                const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, `<redux-store id="reduxStoreElement" store-name="${window.encodeURI(storeName)}"></redux-store>`);
+                this.appendChild(rootElementWithChildren);
 
-                        const result = this._allChildrenFireActionsCorrectly(rootElementWithChildren, numToSetInAction);
+                const result = this._allChildrenFireActionsCorrectly(rootElementWithChildren, numToSetInAction);
 
-                        this._afterTest(reduxStoreElement);
-                        this.removeChild(rootElementWithChildren);
+                this._afterTest(reduxStoreElement);
+                this.removeChild(rootElementWithChildren);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('firing actions raises the statechange event with the new state', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nat(2), jsc.nat(3), (numChildrenPerLevel, numLevels) => {
-                        const reduxStoreElement = this._beforeTest();
+            test('firing actions raises the statechange event with the new state', [jsc.nat(2), jsc.nat(3)], (numChildrenPerLevel, numLevels) => {
+                const reduxStoreElement = this._beforeTest();
 
-                        reduxStoreElement.rootReducer = RootReducer;
+                reduxStoreElement.rootReducer = RootReducer;
 
-                        const rootElement = document.createElement('div');
-                        const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, `<redux-store id="reduxStoreElement"></redux-store>`);
-                        this.appendChild(rootElementWithChildren);
+                const rootElement = document.createElement('div');
+                const rootElementWithChildren = this._createChildHierarchy(rootElement, numChildrenPerLevel, numLevels, `<redux-store id="reduxStoreElement"></redux-store>`);
+                this.appendChild(rootElementWithChildren);
 
-                        const result = this._allChildrenCaptureStatechangeEvent(rootElementWithChildren);
+                const result = this._allChildrenCaptureStatechangeEvent(rootElementWithChildren);
 
-                        this._afterTest(reduxStoreElement);
-                        this.removeChild(rootElementWithChildren);
+                this._afterTest(reduxStoreElement);
+                this.removeChild(rootElementWithChildren);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
             // TODO setting the root reducer multiple times has no effect on the store (I want to make an arbitrary tree of DOM nodes to test this, just like in the jfive components)

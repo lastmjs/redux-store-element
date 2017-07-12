@@ -4,7 +4,7 @@
     <head>
         <base href="../">
         <script src="zwitterion-config.js"></script>
-        <link rel="import" href="bower_components/guesswork/test-runner.html">
+        <link rel="import" href="node_modules/guesswork/test-runner.html">
         <link rel="import" href="test/redux-store-test.html">
     </head>
 
@@ -17,7 +17,6 @@
             if (window.ELECTRON_CONSOLE_ARGUMENTS.autoRun) {
                 setTimeout(() => {
                     document.getElementById('testRunner').autoRun = true;
-                    document.getElementById('testRunner').runTests();
                 }, 5000);
             }
         </script>

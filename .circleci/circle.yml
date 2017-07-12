@@ -1,0 +1,11 @@
+version: 2
+
+jobs:
+    build:
+        node:
+            version: 8.1.2
+
+        dependencies:
+          post:
+            - npm install -g bower # install bower globally so that we can install our bower packages
+            - bower install # install our bower packages (this will go away once Polymer is supported on npm)

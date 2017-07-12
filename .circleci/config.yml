@@ -2,11 +2,9 @@ version: 2
 
 jobs:
     build:
-        docker:
-            - image: circleci/node:8.1.2
-
         working_directory: ~/redux-store-element
-
+        docker:
+            - image: circleci/node:8.1.4
         steps:
             - checkout
             - run:

@@ -4,6 +4,9 @@ jobs:
     build:
         docker:
             - image: circleci/node:8.1.2
+
+        working_directory: ~/redux-store-element
+
         steps:
             - run:
                 name: Install Bower dependencies

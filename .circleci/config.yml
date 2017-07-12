@@ -1,0 +1,10 @@
+version: 2
+
+jobs:
+    build:
+        docker:
+            - image: circleci/node:8.1.2
+        steps:
+            - run:
+                name: Install Bower dependencies
+                command: npm install -g bower && bower install

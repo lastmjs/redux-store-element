@@ -8,6 +8,7 @@ jobs:
         working_directory: ~/redux-store-element
 
         steps:
+            - checkout
             - run:
                 name: Install Bower dependencies
                 command: npm install bower && node_modules/.bin/bower install

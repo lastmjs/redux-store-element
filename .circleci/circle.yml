@@ -2,9 +2,9 @@ version: 2
 
 jobs:
     build:
-        node:
-            version: 8.1.2
-
-run:
-    name: dependencies
-    command: npm install -g bower && bower install
+        docker:
+            - image: circleci/node:8.1.2
+        steps:
+            - run:
+                name: Install Bower dependencies
+                command: npm install -g bower && bower install

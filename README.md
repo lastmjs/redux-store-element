@@ -9,27 +9,27 @@ This custom element offers the basic Redux API declaratively. Because this is a 
 ## Simple and Declarative
 Before we begin, I just want to highlight how easy it is to work with this element declaratively:
 
-* Hook up your root reducer (similar to Redux `createStore`): 
+* Hook up your root reducer (similar to Redux `createStore`):
 
   ```
   // HTML
   <redux-store root-reducer="[[rootReducer]]"></redux-store>
-  
+
   // JS
   import {RootReducer} from '../../redux/reducers';
-  
+
   ...
-  
+
   connectedCallback() {
     this.rootReducer = RootReducer;
   }
   ```
-* Dispatch actions (similar to Redux `dispatch`): 
+* Dispatch actions (similar to Redux `dispatch`):
 
   ```
   // HTML
   <redux-store action="[[action]]"></redux-store>
-  
+
   // JS
   fireAnAction() {
     this.action = {
@@ -37,18 +37,18 @@ Before we begin, I just want to highlight how easy it is to work with this eleme
     };
   }
   ```
-* Listen for state changes (similar to Redux `subscribe`): 
+* Listen for state changes (similar to Redux `subscribe`):
 
   ```
   // HTML
   <redux-store on-statechange="stateChange"></redux-store>
-  
+
   [[valueToBind]]
-  
+
   // JS
   stateChange(e) {
     const state = e.detail.state;
-  
+
     this.valueToBind = state.valueToBind;
   }
   ```
@@ -57,7 +57,7 @@ Before we begin, I just want to highlight how easy it is to work with this eleme
   ```
   // HTML
   <redux-store id="redux-store-element"></redux-store>
-  
+
   // JS
   getReduxState() {
     const reduxStoreElement = this.querySelector('#redux-store-element');
@@ -207,8 +207,6 @@ By default, there is one store for the entire application, meaning that each ins
 
 ## Development
 ```
-bower install
 npm install
-npm run link
-npm run test
+npm run test-window
 ```

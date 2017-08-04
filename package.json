@@ -14,8 +14,8 @@
   },
   "devDependencies": {
     "deep-equal": "^1.0.1",
-    "guesswork": "^0.2.1",
-    "scram-engine": "^0.6.10"
+    "guesswork": "^0.2.3",
+    "scram-engine": "^0.6.13"
   },
   "scripts": {
     "test": "npm run link && xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",

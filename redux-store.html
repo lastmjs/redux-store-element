@@ -71,7 +71,7 @@
                 return;
             }
 
-            stores[this._storeName].store.subscribe(() => {
+            this.unsubscribe = stores[this._storeName].store.subscribe(() => {
                 this.dispatchEvent(new CustomEvent('statechange', {
                     detail: {
                         state: stores[this._storeName].store.getState()

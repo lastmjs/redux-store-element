@@ -15,12 +15,10 @@
   "devDependencies": {
     "deep-equal": "^1.0.1",
     "guesswork": "^0.5.6",
-    "scram-engine": "^0.6.24",
-    "zwitterion": "^0.20.0"
+    "scram-engine": "^0.7.0"
   },
   "scripts": {
     "test": "xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
-    "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
-    "link": "npm link redux-store-element"
+    "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window"
   }
 }

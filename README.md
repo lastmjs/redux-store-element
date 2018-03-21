@@ -7,7 +7,7 @@ A custom element allowing a more declarative use of Redux.
 This custom element offers the basic Redux API declaratively. Because this is a web component, it should be compatible with all major front-end JavaScript frameworks and libraries that allow full interaction with the DOM, including [Polymer](https://github.com/Polymer/polymer), [SkateJS](https://github.com/skatejs/skatejs), [Bosonic](https://github.com/bosonic/bosonic), [X-Tag](https://github.com/x-tag/x-tag), [React](https://github.com/facebook/react), [Angular 2](https://github.com/angular/angular), [Angular 1](https://github.com/angular/angular.js/), [Ember](https://github.com/emberjs/ember.js/), vanilla JavaScript, etc.
 
 ## Simple and Declarative
-Before we begin, I just want to highlight how easy it is to work with this element declaratively:
+Before we begin, I just want to highlight how easy it is to work with this element declaratively (using Polymer data binding syntax):
 
 * Hook up your root reducer (similar to Redux `createStore`):
 
@@ -85,7 +85,9 @@ npm install --save @webcomponents/webcomponentsjs
 <script src="node_modules/webcomponentsjs/webcomponents-lite.js"></script>
 ```
 
-The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data-binding systems and DOM interactions:
+This custom element also depends on native ES Modules support and bare specifier support. Use a bundler like [Rollup](https://github.com/rollup/rollup) or [Webpack](https://github.com/webpack/webpack) if your environment doesn't support ES Modules. If your environment does support ES Modules and you do not wish to use a bundler, you will need to use a static file server that provides rewrites for bare specifiers like [Polyserve](https://github.com/Polymer/polyserve) or [Zwitterion](https://github.com/lastmjs/zwitterion).
+
+The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data binding systems and DOM interactions:
 
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:

@@ -203,6 +203,7 @@ By default, there is one store for the entire application, meaning that each ins
 * Listen for state changes: `<redux-store on-statechange="mapStateToThis" store-name="fooStore"></redux-store>`
 
 ## Important Things to Know:
+* Your runtime environment must support ES Modules natively. Check [here](https://caniuse.com/#feat=es6-module) for compatibility
 * You must pass in your root reducer to any `<redux-store></redux-store>` before actions will be dispatched and state change events raised
 * By default there is one store for the entire application. Each instance of a `<redux-store></redux-store>` will use the same store
 * The `statechange` event supplies the redux state in the `detail.state` property of the event

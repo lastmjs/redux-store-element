@@ -4,7 +4,7 @@
 A custom element allowing a more declarative use of Redux.
 
 # Introduction
-This custom element offers the basic Redux API declaratively. Because this is a custom element based on the Web Components standards, it should be compatible with all major front-end JavaScript frameworks and libraries that interoperate with custom elements, including [Polymer](https://github.com/Polymer/polymer), [SkateJS](https://github.com/skatejs/skatejs),[Vue.js](https://github.com/vuejs/vue), [Angular](https://github.com/angular/angular), vanilla JavaScript, etc. See [here](https://custom-elements-everywhere.com/) for more information on interoperability of other frameworks and libraries with custom elements.
+This custom element offers the basic Redux API declaratively. Because this is a custom element based on the Web Components standards, it should be compatible with all major front-end JavaScript frameworks and libraries that interoperate with custom elements, including [Polymer](https://github.com/Polymer/polymer), [SkateJS](https://github.com/skatejs/skatejs), [Vue.js](https://github.com/vuejs/vue), [Angular](https://github.com/angular/angular), vanilla JavaScript, etc. See [here](https://custom-elements-everywhere.com/) for more information on interoperability of other frameworks and libraries with custom elements.
 
 ## Simple and Declarative
 Before we begin, I just want to highlight how easy it is to work with this element declaratively (using Polymer data binding syntax):

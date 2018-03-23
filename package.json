@@ -16,5 +16,6 @@
   "scripts": {
     "test": "xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
     "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window"
-  }
+  },
+  "main": "redux-store-element.js"
 }

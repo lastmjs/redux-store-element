@@ -71,9 +71,15 @@ Run the following:
 npm install redux-store-element
 ```
 
-Now import `redux-store.html`:
+Now import `redux-store-element.js`:
 ```
-<link rel="import" href="node_modules/redux-store-element/redux-store.html">
+// HTML
+<script type="module" src="node_modules/redux-store-element/redux-store-element.js">
+
+// JavaScript
+
+import 'redux-store-element';
+
 ```
 
 This custom element depends on the custom elements and HTML imports web component specifications, which are not supported by all browsers yet. Include the webcomponentjs polyfills to ensure support across all modern browsers:
@@ -87,7 +93,7 @@ npm install --save @webcomponents/webcomponentsjs
 
 This custom element also depends on native ES Modules support and bare specifier support. Use a bundler like [Rollup](https://github.com/rollup/rollup) or [Webpack](https://github.com/webpack/webpack) if your environment doesn't support ES Modules. If your environment does support ES Modules and you do not wish to use a bundler, you will need to use a static file server that provides rewrites for bare specifiers like [Polyserve](https://github.com/Polymer/polyserve) or [Zwitterion](https://github.com/lastmjs/zwitterion).
 
-The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data binding systems and DOM interactions:
+The following examples are written with Polymer. It shouldn't be too hard to adapt them to other libraries and frameworks, keeping in mind their data binding systems and DOM interactions. This documentation is outdated, using HTML Imports instead of ES Modules, and will be updated in the future:
 
 ## Creating the root reducer
 At some point before you begin dispatching actions, you need to pass in your root reducer to any `<redux-store></redux-store>` element through the root-reducer attribute. From the example:

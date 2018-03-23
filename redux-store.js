@@ -3,7 +3,7 @@ import {createStore} from 'redux';
 let stores = {};
 let currentElementId = -1;
 
-class ReduxStore extends HTMLElement {
+export class ReduxStore extends HTMLElement {
     constructor() {
         super();
 

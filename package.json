@@ -5,17 +5,13 @@
   "keywords": [
     "web-components"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lastmjs/redux-store-element.git"
-  },
   "dependencies": {
     "redux": "^4.0.0-beta.2"
   },
   "devDependencies": {
     "deep-equal": "^1.0.1",
-    "guesswork": "^0.5.6",
-    "scram-engine": "^0.7.0"
+    "guesswork": "^0.6.0",
+    "scram-engine": "^0.7.5"
   },
   "scripts": {
     "test": "xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",

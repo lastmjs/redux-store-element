@@ -1,3 +1,4 @@
+import '../redux-store.js';
 import jsverify from 'jsverify';
 import deepEqual from 'deep-equal';
 

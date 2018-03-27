@@ -11,10 +11,10 @@
   "devDependencies": {
     "@webcomponents/custom-elements": "^1.0.9",
     "@webcomponents/shadydom": "^1.0.13",
-    "guesswork": "^0.8.3"
+    "guesswork": "^0.8.4"
   },
   "scripts": {
-    "test": "xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
+    "test": "guesswork test/index.js",
     "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
     "test-auto": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
     "test-dev": "guesswork test/index.js"

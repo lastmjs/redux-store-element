@@ -1,6 +1,5 @@
 import '../redux-store-element.js';
-import jsverify from 'jsverify';
-import deepEqual from 'deep-equal';
+import jsverify from 'jsverify-es-module';
 
 const InitialState = {
     variable1: 5,
@@ -99,7 +98,7 @@ class ReduxStoreTest extends HTMLElement {
             };
             const state = reduxStoreElement.getState();
 
-            const result = deepEqual(InitialState, state);
+            const result = JSON.stringify(InitialState) === JSON.stringify(state);
 
             this._afterTest(reduxStoreElement);
 

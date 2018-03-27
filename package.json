@@ -9,14 +9,15 @@
     "redux": "^4.0.0-beta.2"
   },
   "devDependencies": {
-    "deep-equal": "^1.0.1",
-    "guesswork": "^0.6.0",
-    "scram-engine": "^0.7.5"
+    "@webcomponents/custom-elements": "^1.0.9",
+    "@webcomponents/shadydom": "^1.0.13",
+    "guesswork": "^0.8.3"
   },
   "scripts": {
     "test": "xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
     "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
-    "test-auto": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run"
+    "test-auto": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
+    "test-dev": "guesswork test/index.js"
   },
   "main": "redux-store-element.js"
 }

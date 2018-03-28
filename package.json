@@ -1,6 +1,6 @@
 {
   "name": "redux-store-element",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A custom element allowing a more declarative use of Redux.",
   "keywords": [
     "web-components"

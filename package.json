@@ -11,7 +11,7 @@
   "devDependencies": {
     "@webcomponents/custom-elements": "^1.0.9",
     "@webcomponents/shadydom": "^1.0.13",
-    "guesswork": "^0.9.1"
+    "guesswork": "^0.9.2"
   },
   "scripts": {
     "test": "guesswork chromium firefox --entry test/index.js",

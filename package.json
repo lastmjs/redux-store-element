@@ -1,6 +1,6 @@
 {
   "name": "redux-store-element",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A custom element allowing a more declarative use of Redux.",
   "keywords": [
     "web-components"
@@ -11,7 +11,7 @@
   "devDependencies": {
     "@webcomponents/custom-elements": "^1.0.9",
     "@webcomponents/shadydom": "^1.0.13",
-    "guesswork": "^0.10.3"
+    "guesswork": "^0.10.5"
   },
   "scripts": {
     "test": "guesswork chromium firefox --entry test/index.js",

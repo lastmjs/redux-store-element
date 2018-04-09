@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 
 let stores = {};
-let currentElementId = -1;
+let currentElementId = 0;
 
 export class ReduxStoreElement extends HTMLElement {
     constructor() {
@@ -10,7 +10,7 @@ export class ReduxStoreElement extends HTMLElement {
         this._rootReducer = null;
         this._storeName = 'DEFAULT_STORE';
         this._action = null;
-        this.elementId = `redux-store-element-${++currentElementId}`;
+        this.elementId = `redux-store-element-${currentElementId++}`;
     }
 
     static get observedAttributes() {
@@ -57,8 +57,12 @@ export class ReduxStoreElement extends HTMLElement {
     set action(val) {
         if (val !== this._action) {
             this._action = val;
-            stores[this._storeName].store.dispatch(this._action);
+            stores[this._storeName].store.dispatch(val);
         }
+    }
+
+    get action() {
+        return this._action;
     }
 
     connectedCallback() {
@@ -100,3 +104,8 @@ export class ReduxStoreElement extends HTMLElement {
 }
 
 window.customElements.define('redux-store', ReduxStoreElement);
+
+export function _resetGlobals() {
+    stores = {};
+    currentElementId = 0;
+}

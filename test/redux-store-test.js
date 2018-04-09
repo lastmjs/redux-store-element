@@ -1,4 +1,4 @@
-import '../redux-store-element.js';
+import {_resetGlobals} from '../redux-store-element.js';
 import jsverify from 'jsverify-es-module';
 
 const InitialState = {
@@ -35,6 +35,7 @@ class ReduxStoreTest extends HTMLElement {
 
     _afterTest(reduxStoreElement) {
         this.removeChild(reduxStoreElement);
+        _resetGlobals();
     }
 
     prepareTests(test) {
@@ -192,6 +193,110 @@ class ReduxStoreTest extends HTMLElement {
 
             this._afterTest(reduxStoreElement);
             this.removeChild(rootElementWithChildren);
+
+            return result;
+        });
+
+        test('rootReducer only gets set once per unique reference', [jsverify.nat(100), jsverify.nat(100)], (numUniqueRootReducers, numTimesSetRootReducer) => {
+            const reduxStoreElement = this._beforeTest();
+
+            let numTimesSet = 0;
+            Object.defineProperty(reduxStoreElement, '_rootReducer', {
+                set: (val) => {
+                    numTimesSet = numTimesSet + 1;
+                    reduxStoreElement.__rootReducer = val;
+                },
+                get: () => {
+                    return reduxStoreElement.__rootReducer;
+                }
+            });
+
+            const rootReducers = new Array(numUniqueRootReducers).fill(null).map(() => {
+                return (state=InitialState, action) => {
+                    switch (action.type) {
+                        default: {
+                            return state;
+                        }
+                    }
+                };
+            };
+
+            rootReducers.forEach((rootReducer) => {
+                new Array(numTimesSetRootReducer).fill(null).forEach(() => {
+                    reduxStoreElement.rootReducer = rootReducer;
+                });
+            });
+
+            const result = numTimesSetRootReducer === 0 ? numTimesSet === 0 : numTimesSet === numUniqueRootReducers;
+
+            this._afterTest(reduxStoreElement);
+
+            return result;
+        });
+
+        test('storeName only gets set once per unique string', [jsverify.nat(100), jsverify.nat(100)], (numUniqueStoreNames, numTimesSetStoreName) => {
+            const reduxStoreElement = this._beforeTest();
+
+            let numTimesSet = 0;
+            Object.defineProperty(reduxStoreElement, '_storeName', {
+                set: (val) => {
+                    numTimesSet = numTimesSet + 1;
+                    reduxStoreElement.__storeName = val;
+                },
+                get: () => {
+                    return reduxStoreElement.__storeName;
+                }
+            });
+
+            let uniqueNumber = 0;
+            const storeNames = new Array(numUniqueStoreNames).fill(null).map(() => {
+                return jsverify.sampler(jsverify.nestring)() + uniqueNumber++;
+            };
+
+            storeNames.forEach((storeName) => {
+                new Array(numTimesSetStoreName).fill(null).forEach(() => {
+                    reduxStoreElement.storeName = storeName;
+                });
+            });
+
+            const result = numTimesSetStoreName === 0 ? numTimesSet === 0 : numTimesSet === numUniqueStoreNames;
+
+            this._afterTest(reduxStoreElement);
+
+            return result;
+        });
+
+        test('action only gets set once per unique reference', [jsverify.nat(100), jsverify.nat(100)], (numUniqueActions, numTimesSetAction) => {
+            const reduxStoreElement = this._beforeTest();
+
+            reduxStoreElement.rootReducer = RootReducer;
+
+            let numTimesSet = 0;
+            Object.defineProperty(reduxStoreElement, '_action', {
+                set: (val) => {
+                    numTimesSet = numTimesSet + 1;
+                    reduxStoreElement.__action = val;
+                },
+                get: () => {
+                    return reduxStoreElement.__action;
+                }
+            });
+
+            const actions = new Array(numUniqueActions).fill(null).map(() => {
+                return {
+                    type: 'DEFAULT_ACTION'
+                };
+            };
+
+            actions.forEach((action) => {
+                new Array(numTimesSetAction).fill(null).forEach(() => {
+                    reduxStoreElement.action = action;
+                });
+            });
+
+            const result = numTimesSetAction === 0 ? numTimesSet === 0 : numTimesSet === numUniqueActions;
+
+            this._afterTest(reduxStoreElement);
 
             return result;
         });

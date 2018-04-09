@@ -9,38 +9,31 @@ export class ReduxStoreElement extends HTMLElement {
 
         this._rootReducer = null;
         this._storeName = 'DEFAULT_STORE';
+        this._action = null;
         this.elementId = `redux-store-element-${++currentElementId}`;
     }
 
     static get observedAttributes() {
         return [
-            'root-reducer',
-            'store-name',
-            'action'
+            'store-name'
         ];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
-            case 'root-reducer': {
-                this.rootReducer = newValue;
-                break;
-            }
             case 'store-name': {
                 this.storeName = newValue;
-                break;
-            }
-            case 'action': {
-                this.action = newValue;
                 break;
             }
         }
     }
 
     set rootReducer(val) {
-        this._rootReducer = val;
-        if (this._rootReducer && this._storeName) {
-            this.createTheStore();
+        if (val !== this._rootReducer) {
+            this._rootReducer = val;
+            if (this._rootReducer && this._storeName) {
+                this.createTheStore();
+            }
         }
     }
 
@@ -49,9 +42,11 @@ export class ReduxStoreElement extends HTMLElement {
     }
 
     set storeName(val) {
-        this._storeName = val;
-        if (this._rootReducer && this._storeName) {
-            this.createTheStore();
+        if (val !== this._storeName) {
+            this._storeName = val;
+            if (this._rootReducer && this._storeName) {
+                this.createTheStore();
+            }
         }
     }
 
@@ -60,7 +55,10 @@ export class ReduxStoreElement extends HTMLElement {
     }
 
     set action(val) {
-        stores[this._storeName].store.dispatch(val);
+        if (val !== this._action) {
+            this._action = val;
+            stores[this._storeName].store.dispatch(this._action);
+        }
     }
 
     connectedCallback() {
@@ -90,6 +88,8 @@ export class ReduxStoreElement extends HTMLElement {
     }
 
     createTheStore() {
+        //TODO I think we can get rid of this check because the setters for storeName and rootReducer do reference equality checking. If a user sets the rootReducer or storeName and the reference is different, then a new store should be created.
+        //TODO I am not sure though, so keep this check for now
         if (stores[this._storeName]) return; // I think it is safe to presume that a store should only be created once. Whithout this check there are some problems when a root reducer is set multiple times for one store
 
         stores[this._storeName] = {

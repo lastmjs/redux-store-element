@@ -21,6 +21,6 @@
   "main": "redux-store-element.js",
   "repository": {
       "type": "git",
-      "url": "https://github.com/lastmjs/redux-store-element.git"
+      "url": "https://github.com/lastmjs/redux-store-element"
   }
 }

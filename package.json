@@ -9,9 +9,9 @@
     "redux": "^4.0.0-beta.2"
   },
   "devDependencies": {
-    "@webcomponents/custom-elements": "^1.0.9",
-    "@webcomponents/shadydom": "^1.0.13",
-    "guesswork": "^0.10.5"
+    "@webcomponents/custom-elements": "1.0.9",
+    "@webcomponents/shadydom": "1.0.13",
+    "guesswork": "0.10.5"
   },
   "scripts": {
     "test": "guesswork chromium firefox --entry test/index.js",

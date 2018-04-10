@@ -11,11 +11,16 @@
   "devDependencies": {
     "@webcomponents/custom-elements": "1.1.0",
     "@webcomponents/shadydom": "1.0.14",
-    "guesswork": "0.10.5"
+    "guesswork": "0.10.5",
+    "semantic-release": "^15.1.5"
   },
   "scripts": {
     "test": "guesswork chromium firefox --entry test/index.js",
     "test-manual": "guesswork --entry test/index.js"
   },
-  "main": "redux-store-element.js"
+  "main": "redux-store-element.js",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/lastmjs/redux-store-element"
+  }
 }

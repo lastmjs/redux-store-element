@@ -39,3 +39,22 @@ jobs:
                command: sudo apt-get update && sudo apt-get install libgtk-3-dev
             - run: npm install
             - run: PATH=$PATH:~/redux-store-element/firefox && export CHROMIUM_BIN=~/redux-store-element/chrome-linux/chrome && npm test
+    release:
+        working_directory: ~/redux-store-element
+        docker:
+            - image: circleci/node:8.11.1@sha256:3fb018db8a18ac6df1114370a2faa45715f6e01575aa98321f433dd9b73c16f7
+        steps:
+            - checkout
+            - run: npm install
+            - run: npx semantic-release
+
+workflows:
+    version: 2
+    test_and_release:
+        jobs:
+            - build
+            - release:
+                filters:
+                    branches:
+                        only:
+                            - master

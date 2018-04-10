@@ -12,7 +12,7 @@
     "@webcomponents/custom-elements": "1.1.0",
     "@webcomponents/shadydom": "1.0.13",
     "guesswork": "0.10.5",
-    "semantic-release": "^15.1.5"
+    "semantic-release": "15.1.5"
   },
   "scripts": {
     "test": "guesswork chromium firefox --entry test/index.js",

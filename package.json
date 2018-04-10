@@ -19,5 +19,8 @@
     "test-manual": "guesswork --entry test/index.js"
   },
   "main": "redux-store-element.js",
-  "repository": "https://github.com/lastmjs/redux-store-element.git"
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/lastmjs/redux-store-element.git"
+  }
 }

@@ -19,7 +19,7 @@ jobs:
     build:
         working_directory: ~/redux-store-element
         docker:
-            - image: circleci/node:8.11.1@sha256:3fb018db8a18ac6df1114370a2faa45715f6e01575aa98321f433dd9b73c16f7
+            - image: circleci/node:8.11.1@sha256:cc078ac24326b6ba3e28eb1adb7f300fec7c17d2756850a2ffa436d18d629ddc
         steps:
             - checkout
             - run:
@@ -42,7 +42,7 @@ jobs:
     release:
         working_directory: ~/redux-store-element
         docker:
-            - image: circleci/node:8.11.1@sha256:3fb018db8a18ac6df1114370a2faa45715f6e01575aa98321f433dd9b73c16f7
+            - image: circleci/node:8.11.1@sha256:cc078ac24326b6ba3e28eb1adb7f300fec7c17d2756850a2ffa436d18d629ddc
         steps:
             - checkout
             - run: npm install

@@ -11,7 +11,7 @@
   "devDependencies": {
     "@webcomponents/custom-elements": "1.1.0",
     "@webcomponents/shadydom": "1.0.14",
-    "guesswork": "0.11.1",
+    "guesswork": "0.11.2",
     "semantic-release": "15.9.9"
   },
   "scripts": {
